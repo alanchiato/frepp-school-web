@@ -1,0 +1,41 @@
+.page { min-height: 100svh; padding: var(--space-6) max(var(--space-5), calc((100vw - 1240px) / 2)); background: radial-gradient(ellipse at top right, var(--yellow-soft), transparent 48%), radial-gradient(ellipse at bottom left, var(--teal-soft), transparent 42%), var(--background); }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-6); }
+.header p { margin-left: auto; text-align: right; font-size: .875rem; }
+.panel { display: grid; grid-template-columns: 1fr 1fr; border: var(--border); background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; }
+.form { padding: var(--space-10); min-width: 0; }
+.form h1 { font-size: clamp(1.8rem, 2.6vw, 2.65rem); line-height: 1.15; letter-spacing: -.04em; margin: var(--space-4) 0; }
+.welcome { text-align: center; }
+.welcome img { width: 340px; margin: 0 auto; }
+.welcome h1 { font-size: 1.6rem; }
+.fields { display: grid; gap: var(--space-5); margin-top: var(--space-8); }
+.story { background: linear-gradient(135deg, var(--blue-soft), var(--surface-alt)); padding: var(--space-10); display: flex; flex-direction: column; overflow: hidden; position: relative; }
+.story h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); letter-spacing: -.045em; line-height: 1.14; margin: var(--space-4) 0 0; max-width: 390px; }
+.story > p:not(:first-child) { max-width: 360px; font-size: 1.06rem; }
+.underline { height: 7px; width: 180px; background: var(--yellow); border-radius: 50%; margin: var(--space-3) 0 var(--space-6); transform: rotate(-2deg); }
+.storyFoot { text-align: center; margin: auto 0 0; font-size: .85rem !important; }
+.footer { text-align: center; font-size: .8rem; padding-block: var(--space-6); }
+.feedback { background: var(--error-soft); color: var(--error); border-radius: var(--radius-sm); padding: var(--space-3); margin: 0; }
+.schools { padding: 0; margin: 0; border: 0; display: grid; gap: var(--space-3); max-height: 340px; overflow-y: auto; }
+.school { display: flex; gap: var(--space-4); align-items: center; border: var(--border); padding: var(--space-5); border-radius: var(--radius); cursor: pointer; font-weight: 650; color: var(--navy); }
+.school > span:nth-child(2) { flex: 1; overflow-wrap: anywhere; }
+.school:has(:checked) { border-color: var(--blue); background: var(--blue-soft); box-shadow: inset 0 0 0 1px var(--blue); }
+.school input { width: 20px; height: 20px; accent-color: var(--blue); flex-shrink: 0; }
+.schoolIcon { background: var(--blue-soft); padding: var(--space-3); border-radius: var(--radius-sm); color: var(--blue); }
+.security { display: flex; align-items: center; gap: var(--space-3); font-size: .8rem; }
+.security svg { flex-shrink: 0; }
+.illustration { min-height: 240px; position: relative; margin-block: auto; }
+.sun { width: 110px; height: 110px; border-radius: 50%; background: var(--yellow-soft); position: absolute; right: 0; top: 30px; }
+.book { display: flex; width: 200px; height: 125px; position: absolute; top: 75px; left: 15%; transform: rotate(-8deg); filter: drop-shadow(0 16px 14px var(--art-shadow)); }
+.book span { width: 50%; background: var(--teal); border-top: 10px solid var(--surface); border-radius: 8px 3px 3px 12px; transform: skewY(10deg); }
+.book span + span { background: var(--blue); transform: skewY(-10deg); border-radius: 3px 8px 12px 3px; }
+.bookStack { position: absolute; width: 140px; bottom: 6px; left: 8%; transform: rotate(2deg); }
+.bookStack i { display: block; height: 20px; border: 5px solid var(--blue); background: var(--surface); border-radius: 10px 3px 3px 10px; }
+.bookStack i:nth-child(2) { border-color: var(--teal); transform: translateX(8px); }
+.bookStack i:nth-child(3) { border-color: var(--yellow); transform: translateX(-5px); }
+.plant { position: absolute; bottom: 10px; right: 10%; width: 60px; height: 130px; border-left: 3px solid var(--navy); }
+.plant i { position: absolute; width: 34px; height: 55px; background: var(--teal); border-radius: 80% 0 80% 0; left: 0; }
+.plant i:nth-child(2) { transform: rotate(-80deg); top: 35px; left: -34px; }
+.plant i:nth-child(3) { top: 60px; }
+.plant span { width: 58px; height: 40px; background: var(--surface); border-radius: 3px 3px 18px 18px; position: absolute; bottom: -10px; left: -30px; box-shadow: var(--shadow-sm); }
+@media (max-width: 1000px) { .form, .story { padding: var(--space-6); } }
+@media (max-width: 767px) { .page { padding: var(--space-4); } .header { justify-content: center; } .header p { display: none; } .panel { grid-template-columns: 1fr; max-width: 520px; margin: auto; } .story { display: none; } .form { padding: var(--space-6); } .welcome h1 { font-size: 1.5rem; } }

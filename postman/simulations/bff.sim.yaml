@@ -1,0 +1,5 @@
+simulation: frepp-school-web-bff
+routing: path
+mocks:
+  - routeKey: bff
+    path: ../mocks/bff/config.yaml

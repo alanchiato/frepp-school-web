@@ -1,0 +1,9 @@
+version: 1
+name: school-web-bff
+slug: school-web-bff
+protocol: http
+interceptRequests: true
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true

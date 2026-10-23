@@ -1,0 +1,43 @@
+.home { display: grid; gap: var(--space-6); }
+.heading { display: flex; justify-content: space-between; align-items: center; gap: var(--space-5); }
+.heading h1 { font-size: clamp(1.7rem, 2.4vw, 2.1rem); margin: var(--space-2) 0; }
+.heading p { margin-bottom: 0; }
+.academicYear { display: flex; gap: var(--space-3); align-items: center; background: var(--surface); border: var(--border); border-radius: var(--radius); padding: var(--space-3) var(--space-5); flex-shrink: 0; }
+.academicYear span, .academicYear strong { display: block; }
+.academicYear span { font-size: .75rem; }
+.banner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 44%); align-items: center; gap: var(--space-6); min-height: 240px; border: var(--border); border-radius: var(--radius); background: linear-gradient(115deg, var(--blue-soft), var(--surface-alt)); padding: var(--space-6); }
+.bannerCopy { min-width: 0; }
+.banner h2 { font-size: clamp(1.7rem, 2.5vw, 2.2rem); overflow-wrap: anywhere; }
+.banner p:last-child { max-width: 560px; margin: 0; }
+.bannerArt { display: block; width: min(100%, 420px); height: auto; justify-self: end; align-self: end; }
+.configured { background: linear-gradient(115deg, var(--success-soft), var(--blue-soft)); }
+.counts { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-4); }
+.count { display: flex; gap: var(--space-3); align-items: center; padding: var(--space-5) var(--space-4); }
+.count span:not(.entityIcon) { font-size: .8rem; }
+.count strong { display: block; font-size: clamp(1.4rem, 2vw, 1.9rem); line-height: 1.25; overflow-wrap: anywhere; }
+.entityIcon { display: grid; place-items: center; flex-shrink: 0; padding: var(--space-3); border-radius: var(--radius-sm); background: var(--blue-soft); color: var(--blue); }
+.count:nth-child(2) .entityIcon, .count:nth-child(5) .entityIcon { background: var(--yellow-soft); color: var(--warning); }
+.count:nth-child(4) .entityIcon { background: var(--teal-soft); color: var(--success); }
+.details { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--space-5); align-items: start; }
+.setup > p { font-size: .875rem; margin-bottom: var(--space-5); }
+.steps { list-style: none; margin: var(--space-4) 0 0; padding: 0; }
+.steps li { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-5) 0; border-bottom: var(--border); }
+.steps li:last-child { border: 0; padding-bottom: 0; }
+.stepText { flex: 1; min-width: 0; }
+.stepText p { font-size: .8rem; margin: var(--space-1) 0 0; }
+.side { display: grid; gap: var(--space-5); }
+.alerts { list-style: none; padding: 0; margin: var(--space-5) 0 0; display: grid; gap: var(--space-3); }
+.alerts li { display: flex; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-sm); }
+.warning { background: var(--warning-soft); border: 1px solid var(--yellow); }
+.alertIcon { color: var(--warning); padding-top: var(--space-1); }
+.alertLabel { font-size: .7rem; font-weight: 700; color: var(--warning); }
+.alerts h3 { font-size: .9rem; margin: 0 0 var(--space-2); }
+.alerts p { font-size: .8rem; margin: 0; }
+.positive { display: grid; justify-items: start; gap: var(--space-3); margin-top: var(--space-5); background: var(--success-soft); border-radius: var(--radius-sm); padding: var(--space-5); }
+.positive svg { color: var(--success); }
+.positive p { margin: 0; font-size: .875rem; }
+.tipIcon { display: inline-grid; color: var(--teal); background: var(--teal-soft); border-radius: var(--radius); padding: var(--space-3); margin-bottom: var(--space-4); }
+.side > section > p { font-size: .875rem; margin-bottom: 0; }
+.loading { display: grid; gap: var(--space-6); }
+@media (max-width: 1279px) { .banner { padding: var(--space-6); gap: var(--space-4); } .counts { grid-template-columns: repeat(3, minmax(0, 1fr)); } .details { grid-template-columns: minmax(0, 1fr); } .side { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .heading { align-items: start; flex-direction: column; } .banner { grid-template-columns: minmax(0, 1fr); padding: var(--space-5); } .bannerArt { width: min(100%, 340px); } .counts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); } .count { flex-direction: column; align-items: start; } .side { grid-template-columns: 1fr; } .steps li { gap: var(--space-3); flex-wrap: wrap; } .stepText { min-width: calc(100% - 76px); } .steps li > span:last-child { margin-left: 60px; } }
