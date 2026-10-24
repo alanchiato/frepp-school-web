@@ -1,0 +1,19 @@
+.progress { --indicator-size: 36px; position: relative; container-type: inline-size; padding-top: var(--space-1); }
+.track { position: absolute; top: calc(var(--indicator-size) / 2 + var(--space-1)); left: 16.6667%; right: 16.6667%; height: 2px; transform: translateY(-50%); background: var(--border-color); }
+.fill { display: block; height: 100%; background: var(--blue); transition: width 220ms ease; }
+.stepper { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0; margin: 0; list-style: none; }
+.stepper li { display: grid; justify-items: center; align-content: start; gap: var(--space-3); min-width: 0; color: var(--muted); font-size: .875rem; }
+.indicator { display: grid; place-items: center; width: var(--indicator-size); height: var(--indicator-size); border: 2px solid var(--border-color); border-radius: 50%; background: var(--surface); transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease, transform 220ms ease, box-shadow 220ms ease; }
+.number, .check { grid-area: 1 / 1; transition: opacity 180ms ease, transform 180ms ease; }
+.number { font-weight: 600; }
+.check { opacity: 0; transform: scale(.75); }
+.stepper li[data-state='completed'] .indicator { background: var(--blue-soft); border-color: var(--blue); color: var(--blue); }
+.stepper li[data-state='completed'] .number { opacity: 0; transform: scale(.75); }
+.stepper li[data-state='completed'] .check { opacity: 1; transform: scale(1); }
+.stepper li[data-state='current'] { color: var(--blue); font-weight: 700; }
+.stepper li[data-state='current'] .indicator { background: var(--blue); color: var(--surface); border-color: var(--blue); transform: scale(1.06); box-shadow: 0 0 0 4px var(--blue-soft); }
+.label { white-space: nowrap; line-height: 1.4; transition: color 220ms ease; }
+.compact { display: none; }
+@container (max-width: 520px) { .stepper li { gap: var(--space-2); font-size: .8rem; } .full { display: none; } .compact { display: inline; } }
+@media (max-width: 600px) { .progress { --indicator-size: 30px; } }
+@media (prefers-reduced-motion: reduce) { .fill, .indicator, .number, .check, .label { transition: none; } }

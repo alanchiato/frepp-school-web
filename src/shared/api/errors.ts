@@ -13,6 +13,7 @@ export function errorMessage(error: unknown): string {
   if (error instanceof ApiError) {
     if (error.code === 'invalid_credentials') return 'Email ou senha inválidos.'
     if (error.code === 'invalid_login_challenge') return 'Sua seleção expirou ou não está mais disponível. Entre novamente.'
+    if (error.code === 'academic_year_conflict') return 'Já existe um ano letivo com esse número.'
     if (error.status === 401) return 'Sua sessão terminou. Entre novamente.'
     if (error.status === 403) return 'Você não tem permissão para acessar esta área.'
   }

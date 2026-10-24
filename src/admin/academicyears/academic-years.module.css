@@ -1,0 +1,25 @@
+.page { display: grid; gap: var(--space-6); max-width: 900px; }
+.page > header h1 { margin: 0 0 var(--space-2); }
+.page > header p:last-child { margin-bottom: 0; }
+.heading { display: flex; align-items: end; justify-content: space-between; gap: var(--space-5); flex-wrap: wrap; }
+.empty { display: grid; justify-items: center; text-align: center; padding-block: var(--space-12); }
+.empty p { max-width: 480px; }
+.icon { display: inline-grid; place-items: center; flex-shrink: 0; width: 48px; height: 48px; color: var(--blue); background: var(--blue-soft); border-radius: var(--radius-sm); }
+.empty .icon { width: 64px; height: 64px; margin-bottom: var(--space-5); }
+.empty .icon svg { width: 32px; height: 32px; }
+.list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+.item { display: flex; align-items: center; gap: var(--space-4); }
+.itemText { flex: 1; min-width: 0; }
+.item h2 { margin: 0 0 var(--space-1); font-size: 1.2rem; }
+.item p { margin: 0; }
+.form { display: grid; gap: var(--space-5); }
+.form label { display: grid; gap: var(--space-2); color: var(--navy); font-weight: 650; }
+.form input { width: 100%; min-width: 0; padding: var(--space-3) var(--space-4); border: 1px solid var(--input-border); border-radius: var(--radius-sm); font: inherit; color: var(--navy); background: var(--surface); }
+.form input:focus-visible { outline: var(--focus); outline-offset: 2px; }
+.dates { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-4); }
+.hint { margin: 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); background: var(--blue-soft); color: var(--text); }
+.error { margin: 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); background: var(--error-soft); color: var(--error); }
+.actions { display: flex; justify-content: flex-end; gap: var(--space-3); padding-top: var(--space-5); border-top: var(--border); flex-wrap: wrap; }
+.actions > :first-child { margin-right: auto; }
+.back { justify-self: start; }
+@media (max-width: 600px) { .dates { grid-template-columns: 1fr; } .item { flex-wrap: wrap; } .item button { width: 100%; } .actions button { flex: 1 1 100%; } }

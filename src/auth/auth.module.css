@@ -37,5 +37,6 @@
 .plant i:nth-child(2) { transform: rotate(-80deg); top: 35px; left: -34px; }
 .plant i:nth-child(3) { top: 60px; }
 .plant span { width: 58px; height: 40px; background: var(--surface); border-radius: 3px 3px 18px 18px; position: absolute; bottom: -10px; left: -30px; box-shadow: var(--shadow-sm); }
+@media (min-width: 1024px) { .page { min-height: 133.3333svh; padding-inline: max(var(--space-5), calc((133.3333vw - 1240px) / 2)); } }
 @media (max-width: 1000px) { .form, .story { padding: var(--space-6); } }
 @media (max-width: 767px) { .page { padding: var(--space-4); } .header { justify-content: center; } .header p { display: none; } .panel { grid-template-columns: 1fr; max-width: 520px; margin: auto; } .story { display: none; } .form { padding: var(--space-6); } .welcome h1 { font-size: 1.5rem; } }

@@ -45,7 +45,9 @@ describe('presentation mappings', () => {
     expect(result.description).not.toBe('')
     if (code !== 'no_current_academic_year') expect(result.title).toContain('2')
   })
-  it.each(['create_unit', 'create_academic_year', 'create_class', 'add_teacher', 'add_student', 'add_guardian', 'assign_teachers', 'link_guardians', 'future_action'])('does not expose a dead destination for %s', (code) => expect(actionDestination(code)).toBeUndefined())
+  it('exposes the implemented unit flow', () => expect(actionDestination('create_unit')).toBe('/admin/units'))
+  it('exposes the implemented academic year flow', () => expect(actionDestination('create_academic_year')).toBe('/admin/academic-years'))
+  it.each(['create_class', 'add_teacher', 'add_student', 'add_guardian', 'assign_teachers', 'link_guardians', 'future_action'])('does not expose a dead destination for %s', (code) => expect(actionDestination(code)).toBeUndefined())
   it('does not reflect backend messages or distinguish invalid identities', () => {
     expect(errorMessage(new ApiError(401, 'invalid_credentials'))).toBe('Email ou senha inválidos.')
     expect(errorMessage(new Error('sensitive backend failure'))).not.toContain('sensitive')

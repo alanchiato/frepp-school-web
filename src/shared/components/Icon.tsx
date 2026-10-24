@@ -1,4 +1,4 @@
-export type IconName = 'home' | 'school' | 'calendar' | 'people' | 'teacher' | 'student' | 'guardians' | 'check' | 'alert' | 'lock' | 'arrow' | 'logout' | 'mail'
+export type IconName = 'home' | 'school' | 'calendar' | 'people' | 'teacher' | 'student' | 'guardians' | 'check' | 'alert' | 'lock' | 'arrow' | 'chevronDown' | 'logout' | 'mail'
 const paths: Record<IconName, string> = {
   home: 'm3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8',
   school: 'M4 21V9h6V3h4v6h6v12M2 21h20M8 13v2m0 3v1m8-6v2m0 3v1M10 21v-4h4v4M11 6h2',
@@ -11,6 +11,7 @@ const paths: Record<IconName, string> = {
   alert: 'm12 3 10 18H2L12 3m0 6v5m0 3v1',
   lock: 'M5 10h14v11H5zM8 10V6a4 4 0 0 1 8 0v4m-4 5v2',
   arrow: 'M4 12h16m-6-6 6 6-6 6',
+  chevronDown: 'm6 9 6 6 6-6',
   logout: 'M9 3H3v18h6m5-15 6 6-6 6m-6-6h12',
   mail: 'M3 5h18v14H3zm0 0 9 8 9-8',
 }

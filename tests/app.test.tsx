@@ -30,6 +30,7 @@ let holdSession: Promise<void> | undefined
 let holdLogin: Promise<void> | undefined
 let holdOverview: Promise<void> | undefined
 let currentSession: typeof session
+let units: { id: string; name: string }[]
 let base: string
 const failure = (status: number) => ({ error: { code: status === 401 ? 'unauthorized' : status === 403 ? 'forbidden' : 'bad_gateway', message: 'Untrusted backend text.' } })
 function send(response: ServerResponse, status: number, value?: unknown) {
@@ -56,13 +57,33 @@ async function handle(request: IncomingMessage, response: ServerResponse) {
       if (logoutStatus === 204) signedIn = false
       return send(response, logoutStatus)
     case '/admin/overview': await holdOverview; return send(response, overviewStatus, overviewStatus === 200 ? overview(overviewKind) : undefined)
-    default: return send(response, 404)
+    case '/admin/units':
+      if (request.method === 'GET') return send(response, 200, { units })
+      if (request.method === 'POST') {
+        const input = body as { name: string }
+        const unit = { id: '55555555-5555-4555-8555-555555555555', name: input.name }
+        units.push(unit)
+        return send(response, 201, { unit })
+      }
+      return send(response, 405)
+    case '/unit/units': return send(response, 200, { units })
+    case '/admin/academic-years': return send(response, 200, { academicYears: [] })
+    default:
+      if (request.url?.startsWith('/unit-overview/')) {
+        const unitId=request.url.split('/')[2]
+        const unit=units.find(item=>item.id===unitId)
+        return unit ? send(response,200,{unit,academicYear:{hasCurrent:true,current:{id:'44444444-4444-4444-8444-444444444444',year:2026,startDate:'2026-01-01',endDate:'2026-12-31'}},counts:{classes:unitId===units[0]?.id?2:5,teachers:1,students:unitId===units[0]?.id?30:60,guardians:20}}) : send(response,403)
+      }
+      if (request.url?.startsWith('/unit/') && request.url.endsWith('/academic-years')) return send(response,200,{academicYears:[]})
+      return send(response, 404)
   }
 }
 const server = createServer((req, res) => { void handle(req, res) })
 beforeEach(async () => {
+  sessionStorage.clear()
   calls = []; signedIn = false; multiple = false; overviewStatus = 200; loginStatus = 200; selectStatus = 200; logoutStatus = 204
   overviewKind = 'empty'; holdSession = undefined; holdLogin = undefined; holdOverview = undefined; currentSession = session; restoreStatus = undefined
+  units = []
   server.listen(0, '127.0.0.1'); await once(server, 'listening')
   const address = server.address(); if (!address || typeof address === 'string') throw new Error('Missing HTTP fixture')
   base = `http://127.0.0.1:${address.port}`
@@ -139,6 +160,43 @@ describe('application flows over HTTP', () => {
     overviewStatus = 200; await userEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }))
     expect(await screen.findByRole('heading', { name: 'Visão geral da escola' })).toBeInTheDocument()
   })
+  it('abre Unidades pela primeira etapa da Visão geral e cadastra sem convite', async () => {
+    signedIn = true; start()
+    const setup = (await screen.findByRole('heading', { name: 'Configuração da escola' })).closest('section')
+    if (!setup) throw new Error('Missing setup section')
+    await userEvent.click(within(setup).getByRole('link', { name: 'Unidades' }))
+    expect(await screen.findByText('Nenhuma unidade cadastrada')).toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: 'Cadastrar primeira unidade' }))
+    await userEvent.type(screen.getByLabelText('Nome da unidade'), 'Unidade Centro')
+    await userEvent.click(screen.getByRole('button', { name: 'Próximo' }))
+    await userEvent.type(screen.getByLabelText('Cidade'), 'São Paulo')
+    await userEvent.type(screen.getByLabelText('Estado (UF)'), 'SP')
+    await userEvent.click(screen.getByRole('button', { name: 'Próximo' }))
+    await userEvent.click(screen.getByRole('button', { name: 'Salvar unidade' }))
+    expect(await screen.findByRole('heading', { name: 'Unidade cadastrada' })).toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: 'Concluir sem administrador' }))
+    expect(await screen.findByText('Unidade Centro')).toBeInTheDocument()
+    expect(calls.filter((call) => call.path === '/admin/units' && call.method === 'POST')).toHaveLength(1)
+    expect(calls.some((call) => call.path === '/admin/unit-admins')).toBe(false)
+  })
+  it('mostra apenas unidades atribuídas e atualiza os totais ao trocar de unidade', async () => {
+    signedIn = true
+    units=[{id:'55555555-5555-4555-8555-555555555555',name:'Centro'},{id:'66666666-6666-4666-8666-666666666666',name:'Anexo'}]
+    currentSession = { ...session, permissions: [], experiences: { admin: false, teacher: false, unitAdmin: true } }
+    start()
+    expect(await screen.findByRole('heading', { name: 'Visão geral da unidade' })).toBeInTheDocument()
+    expect(await screen.findByText('30')).toBeInTheDocument()
+    expect(screen.getByRole('link',{name:'Unidades'})).toBeInTheDocument()
+    expect(screen.getByRole('link',{name:'Anos letivos'})).toBeInTheDocument()
+    await userEvent.selectOptions(screen.getByLabelText('Unidade de trabalho'),units[1].id)
+    expect(await screen.findByText('60')).toBeInTheDocument()
+    expect(calls.filter(call=>call.path.startsWith('/unit-overview/')).map(call=>call.path)).toEqual([`/unit-overview/${units[0].id}`,`/unit-overview/${units[1].id}`])
+    await userEvent.click(screen.getByRole('link',{name:'Anos letivos'}))
+    expect(await screen.findByRole('heading',{name:'Anos letivos'})).toBeInTheDocument()
+    expect(screen.queryByRole('button',{name:'Cadastrar ano letivo'})).not.toBeInTheDocument()
+    expect(calls.some(call=>call.path===`/unit/${units[1].id}/academic-years`)).toBe(true)
+    expect(calls.some((call) => call.path === '/admin/units')).toBe(false)
+  })
   it('Teacher-only has safe unsupported state without fetching admin data', async () => {
     signedIn = true; currentSession = { ...session, experiences: { admin: false, teacher: true } }; start()
     expect(await screen.findByRole('heading', { name: 'Acesso não permitido' })).toBeInTheDocument()
@@ -200,7 +258,7 @@ describe('application flows over HTTP', () => {
 })
 describe('overview components', () => {
   it.each(['empty', 'partial', 'configured'] as const)('renders %s using BFF values', (kind) => {
-    const data = overview(kind); render(<OverviewContent data={data} />)
+    const data = overview(kind); render(<MemoryRouter><OverviewContent data={data} /></MemoryRouter>)
     const illustration = document.querySelector('img[src="' + adminHomeWelcome + '"]')
     expect(illustration).toHaveAttribute('alt', '')
     expect(illustration).toHaveAttribute('aria-hidden', 'true')
@@ -213,7 +271,8 @@ describe('overview components', () => {
     expect(within(counts).getByText('Professores')).toBeInTheDocument()
     for (const step of data.setup.steps) expect(screen.getAllByText(step.status === 'complete' ? 'Concluído' : step.status === 'attention' ? 'Atenção' : 'Não iniciado').length).toBeGreaterThan(0)
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
-    expect(screen.queryByRole('link')).not.toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Unidades' })).toHaveAttribute('href', '/admin/units')
+    if (kind === 'empty') expect(screen.getByRole('link', { name: 'Cadastrar unidade' })).toHaveAttribute('href', '/admin/units')
     if (kind === 'empty') expect(screen.getByText('Não definido')).toBeInTheDocument()
     else expect(screen.getByText('2001')).toBeInTheDocument()
     if (kind === 'configured') expect(screen.getByText('Nenhuma pendência de configuração')).toBeInTheDocument()

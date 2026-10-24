@@ -20,6 +20,7 @@ export function alertPresentation(alert: OverviewAlert): { title: string; descri
     default: return { title: 'Pendência de configuração', description: `${count} ocorrência(s) informada(s) pela escola.`, icon: 'alert' }
   }
 }
-// Only real destinations can be exposed. CRUD destinations arrive in later specs.
-const actionRoutes = new Map<string, string>()
+// Expose only destinations backed by an implemented School Web flow.
+const actionRoutes = new Map<string, string>([['create_unit', '/admin/units'], ['create_academic_year', '/admin/academic-years']])
 export function actionDestination(code: string): string | undefined { return actionRoutes.get(code) }
+export function actionLabel(code: string): string { return code === 'create_unit' ? 'Cadastrar unidade' : code === 'create_academic_year' ? 'Cadastrar ano letivo' : code }
