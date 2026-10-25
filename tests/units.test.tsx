@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 import { UnitsPage } from '../src/admin/units/UnitsPage'
 import { UnitUnitsPage } from '../src/admin/unitadmins/UnitAdminHome'
@@ -8,9 +8,9 @@ import { SessionContext, type SessionContextValue } from '../src/session/context
 import type { BffClient } from '../src/shared/api/client'
 
 const unit = { id: '11111111-1111-1111-1111-111111111111', name: 'Unidade Centro' }
-function renderPage(api: Partial<BffClient>) {
+function renderPage(api: Partial<BffClient>, path='/admin/units') {
   const context = { api, invalidate: vi.fn() } as unknown as SessionContextValue
-  return render(<MemoryRouter><SessionContext.Provider value={context}><UnitsPage /></SessionContext.Provider></MemoryRouter>)
+  return render(<MemoryRouter initialEntries={[path]}><SessionContext.Provider value={context}><Routes><Route path="/admin/units" element={<UnitsPage/>}/><Route path="/admin/units/:unitId" element={<UnitsPage/>}/></Routes></SessionContext.Provider></MemoryRouter>)
 }
 function fillWizard(state='SP') {
   fireEvent.change(screen.getByLabelText('Nome da unidade'), { target: { value: unit.name } })
@@ -23,6 +23,39 @@ function fillWizard(state='SP') {
 }
 
 describe('fluxo de unidades', () => {
+  it('abre o nome da unidade e apresenta dados e administradores vinculados', async () => {
+    const details={...unit,status:'ACTIVE' as const,code:'UC',documentNumber:null,street:'Rua das Flores',addressNumber:'10',complement:null,district:'Centro',city:'São Paulo',state:'SP',postalCode:'01000-000',countryCode:'BR',timezone:'America/Sao_Paulo'}
+    const admin={userId:'33333333-3333-3333-3333-333333333333',fullName:'Ana Costa',email:'ana@escola.test',status:'INVITED' as const}
+    const unitDetails=vi.fn().mockResolvedValue({unit:details})
+    const assignedUnitAdmins=vi.fn().mockResolvedValue({admins:[admin]})
+    renderPage({units:vi.fn().mockResolvedValue({units:[unit]}),unitDetails,assignedUnitAdmins})
+    fireEvent.click(await screen.findByRole('link',{name:unit.name}))
+    expect(await screen.findByRole('heading',{name:unit.name})).toBeInTheDocument()
+    expect(screen.getByText('Rua das Flores')).toBeInTheDocument()
+    expect(screen.getByText('Ana Costa')).toBeInTheDocument()
+    expect(screen.getByText('Convite pendente')).toBeInTheDocument()
+    expect(screen.getByRole('button',{name:'Convidar novo'})).toBeInTheDocument()
+    expect(screen.getByRole('button',{name:'Associar existente'})).toBeInTheDocument()
+    expect(unitDetails).toHaveBeenCalledWith(unit.id,expect.any(AbortSignal))
+    expect(assignedUnitAdmins).toHaveBeenCalledWith(unit.id,expect.any(AbortSignal))
+  })
+
+  it('associa administrador pela página da unidade e atualiza a lista após voltar', async () => {
+    const details={...unit,status:'ACTIVE' as const,code:null,documentNumber:null,street:null,addressNumber:null,complement:null,district:null,city:'São Paulo',state:'SP',postalCode:null,countryCode:'BR',timezone:null}
+    const admin={userId:'33333333-3333-3333-3333-333333333333',fullName:'Ana Costa',email:'ana@escola.test',status:'ACTIVE' as const}
+    const assignedUnitAdmins=vi.fn().mockResolvedValueOnce({admins:[]}).mockResolvedValue({admins:[admin]})
+    const assignUnitAdmin=vi.fn().mockResolvedValue({userId:admin.userId,unitId:unit.id})
+    renderPage({units:vi.fn().mockResolvedValue({units:[unit]}),unitDetails:vi.fn().mockResolvedValue({unit:details}),assignedUnitAdmins,availableUnitAdmins:vi.fn().mockResolvedValue({admins:[admin]}),assignUnitAdmin},`/admin/units/${unit.id}`)
+    expect(await screen.findByText('Nenhum UNIT_ADMIN associado a esta unidade.')).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button',{name:'Associar existente'}))
+    fireEvent.click(await screen.findByRole('radio',{name:/Ana Costa/}))
+    fireEvent.click(screen.getByRole('button',{name:'Associar administrador'}))
+    expect(await screen.findByRole('heading',{name:'Administrador associado'})).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button',{name:'Voltar à unidade'}))
+    expect(await screen.findByText('Ana Costa')).toBeInTheDocument()
+    expect(assignedUnitAdmins).toHaveBeenCalledTimes(2)
+  })
+
   it('mostra o progresso evolutivo e atualiza etapas concluídas ao avançar e voltar', async () => {
     renderPage({units:vi.fn().mockResolvedValue({units:[]})})
     await screen.findByText('Nenhuma unidade cadastrada')

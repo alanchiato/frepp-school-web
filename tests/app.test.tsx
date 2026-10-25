@@ -30,7 +30,7 @@ let holdSession: Promise<void> | undefined
 let holdLogin: Promise<void> | undefined
 let holdOverview: Promise<void> | undefined
 let currentSession: typeof session
-let units: { id: string; name: string }[]
+let units: { id: string; name: string; city?: string; state?: string }[]
 let base: string
 const failure = (status: number) => ({ error: { code: status === 401 ? 'unauthorized' : status === 403 ? 'forbidden' : 'bad_gateway', message: 'Untrusted backend text.' } })
 function send(response: ServerResponse, status: number, value?: unknown) {
@@ -69,6 +69,13 @@ async function handle(request: IncomingMessage, response: ServerResponse) {
     case '/unit/units': return send(response, 200, { units })
     case '/admin/academic-years': return send(response, 200, { academicYears: [] })
     default:
+      if (request.url?.startsWith('/admin/units/') && request.method==='GET') {
+        const parts=request.url.split('/')
+        const unit=units.find(item=>item.id===parts[3])
+        if(!unit)return send(response,404)
+        if(parts[4]==='unit-admins')return send(response,200,{admins:[{userId:'77777777-7777-4777-8777-777777777777',fullName:'Ana Costa',email:'ana@escola.test',status:'ACTIVE'}]})
+        return send(response,200,{unit:{...unit,code:'UC',documentNumber:null,status:'ACTIVE',street:'Rua A',addressNumber:'10',complement:null,district:'Centro',city:unit.city??'São Paulo',state:unit.state??'SP',postalCode:null,countryCode:'BR',timezone:'America/Sao_Paulo'}})
+      }
       if (request.url?.startsWith('/unit-overview/')) {
         const unitId=request.url.split('/')[2]
         const unit=units.find(item=>item.id===unitId)
@@ -98,6 +105,24 @@ async function enter() {
 }
 
 describe('application flows over HTTP', () => {
+  it('abre e fecha o menu móvel com foco e mantém a escola no cabeçalho', async () => {
+    signedIn = true; start()
+    await screen.findByRole('heading', { name: 'Visão geral da escola' })
+    const toggle = screen.getByRole('button', { name: 'Abrir menu' })
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    expect(toggle).toHaveAttribute('aria-controls', 'school-navigation')
+    expect(within(toggle.closest('header')!).getByRole('img', { name: 'Frepp School' })).toBeInTheDocument()
+    expect(within(toggle.closest('header')!).getByTitle('Escola de teste')).toBeInTheDocument()
+    await userEvent.click(toggle)
+    expect(screen.getByRole('button', { name: 'Fechar menu' })).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByRole('link', { name: 'Visão geral' })).toHaveFocus()
+    await userEvent.keyboard('{Escape}')
+    expect(screen.getByRole('button', { name: 'Abrir menu' })).toHaveFocus()
+    await userEvent.click(screen.getByRole('button', { name: 'Abrir menu' }))
+    await userEvent.click(screen.getByRole('button', { name: 'Fechar menu de navegação' }))
+    expect(screen.getByRole('button', { name: 'Abrir menu' })).toHaveAttribute('aria-expanded', 'false')
+  })
+
   it('overview loading keeps the shell and a stable skeleton layout', async () => {
     signedIn = true
     let release: () => void = () => {}; holdOverview = new Promise((resolve) => { release = resolve })
@@ -178,6 +203,16 @@ describe('application flows over HTTP', () => {
     expect(await screen.findByText('Unidade Centro')).toBeInTheDocument()
     expect(calls.filter((call) => call.path === '/admin/units' && call.method === 'POST')).toHaveLength(1)
     expect(calls.some((call) => call.path === '/admin/unit-admins')).toBe(false)
+  })
+  it('abre detalhes ao clicar no nome da unidade e consulta seus administradores', async () => {
+    signedIn=true
+    units=[{id:'55555555-5555-4555-8555-555555555555',name:'Unidade Centro',city:'São Paulo',state:'SP'}]
+    start('/admin/units')
+    await userEvent.click(await screen.findByRole('link',{name:'Unidade Centro'}))
+    expect(await screen.findByRole('heading',{name:'Unidade Centro'})).toBeInTheDocument()
+    expect(screen.getByText('Rua A')).toBeInTheDocument()
+    expect(screen.getByText('Ana Costa')).toBeInTheDocument()
+    expect(calls.some(call=>call.path===`/admin/units/${units[0].id}/unit-admins`)).toBe(true)
   })
   it('mostra apenas unidades atribuídas e atualiza os totais ao trocar de unidade', async () => {
     signedIn = true

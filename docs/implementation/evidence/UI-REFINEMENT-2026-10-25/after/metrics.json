@@ -1,0 +1,1867 @@
+[
+  {
+    "label": "login",
+    "width": 1440,
+    "height": 900,
+    "file": "login-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Sua escola, mais conectada.",
+    "visibleButtons": [
+      {
+        "text": "Entrar",
+        "width": 404,
+        "height": 38
+      }
+    ]
+  },
+  {
+    "label": "school-selection",
+    "width": 1440,
+    "height": 900,
+    "file": "school-selection-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Escolha sua escola",
+    "visibleButtons": [
+      {
+        "text": "Continuar",
+        "width": 404,
+        "height": 38
+      },
+      {
+        "text": "Voltar ao login",
+        "width": 404,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "overview",
+    "width": 1440,
+    "height": 900,
+    "file": "overview-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Visão geral da escola",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      }
+    ]
+  },
+  {
+    "label": "units",
+    "width": 1440,
+    "height": 900,
+    "file": "units-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Unidades",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Cadastrar unidade",
+        "width": 140,
+        "height": 36
+      },
+      {
+        "text": "Convidar novo",
+        "width": 115,
+        "height": 36
+      },
+      {
+        "text": "Associar existente",
+        "width": 139,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "academic-years",
+    "width": 1440,
+    "height": 900,
+    "file": "academic-years-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Anos letivos",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Cadastrar ano letivo",
+        "width": 149,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "academic-structure",
+    "width": 1440,
+    "height": 900,
+    "file": "academic-structure-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Séries e turmas",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Séries",
+        "width": 61,
+        "height": 38
+      },
+      {
+        "text": "Turmas",
+        "width": 68,
+        "height": 38
+      },
+      {
+        "text": "Nova série",
+        "width": 93,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "subjects",
+    "width": 1440,
+    "height": 900,
+    "file": "subjects-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Disciplinas",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Nova disciplina",
+        "width": 120,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "teachers",
+    "width": 1440,
+    "height": 900,
+    "file": "teachers-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Professores",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Novo professor",
+        "width": 121,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "students",
+    "width": 1440,
+    "height": 900,
+    "file": "students-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Alunos",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Novo aluno",
+        "width": 96,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "unit-wizard",
+    "width": 1440,
+    "height": 900,
+    "file": "unit-wizard-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Cadastrar unidade",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Voltar às unidades",
+        "width": 139,
+        "height": 36
+      },
+      {
+        "text": "Próximo",
+        "width": 80,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "teacher-wizard",
+    "width": 1440,
+    "height": 900,
+    "file": "teacher-wizard-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Cadastrar professor",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Cancelar",
+        "width": 84,
+        "height": 36
+      },
+      {
+        "text": "Próximo",
+        "width": 80,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "student-wizard",
+    "width": 1440,
+    "height": 900,
+    "file": "student-wizard-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Cadastrar aluno",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Cancelar",
+        "width": 84,
+        "height": 36
+      },
+      {
+        "text": "Próximo",
+        "width": 80,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "login",
+    "width": 1280,
+    "height": 800,
+    "file": "login-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Sua escola, mais conectada.",
+    "visibleButtons": [
+      {
+        "text": "Entrar",
+        "width": 404,
+        "height": 38
+      }
+    ]
+  },
+  {
+    "label": "school-selection",
+    "width": 1280,
+    "height": 800,
+    "file": "school-selection-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Escolha sua escola",
+    "visibleButtons": [
+      {
+        "text": "Continuar",
+        "width": 404,
+        "height": 38
+      },
+      {
+        "text": "Voltar ao login",
+        "width": 404,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "overview",
+    "width": 1280,
+    "height": 800,
+    "file": "overview-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Visão geral da escola",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      }
+    ]
+  },
+  {
+    "label": "units",
+    "width": 1280,
+    "height": 800,
+    "file": "units-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Unidades",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Cadastrar unidade",
+        "width": 140,
+        "height": 36
+      },
+      {
+        "text": "Convidar novo",
+        "width": 115,
+        "height": 36
+      },
+      {
+        "text": "Associar existente",
+        "width": 139,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "academic-years",
+    "width": 1280,
+    "height": 800,
+    "file": "academic-years-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Anos letivos",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Cadastrar ano letivo",
+        "width": 149,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "academic-structure",
+    "width": 1280,
+    "height": 800,
+    "file": "academic-structure-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Séries e turmas",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Séries",
+        "width": 61,
+        "height": 38
+      },
+      {
+        "text": "Turmas",
+        "width": 68,
+        "height": 38
+      },
+      {
+        "text": "Nova série",
+        "width": 93,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "subjects",
+    "width": 1280,
+    "height": 800,
+    "file": "subjects-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Disciplinas",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Nova disciplina",
+        "width": 120,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "teachers",
+    "width": 1280,
+    "height": 800,
+    "file": "teachers-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Professores",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Novo professor",
+        "width": 121,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "students",
+    "width": 1280,
+    "height": 800,
+    "file": "students-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Alunos",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Novo aluno",
+        "width": 96,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "unit-wizard",
+    "width": 1280,
+    "height": 800,
+    "file": "unit-wizard-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Cadastrar unidade",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Voltar às unidades",
+        "width": 139,
+        "height": 36
+      },
+      {
+        "text": "Próximo",
+        "width": 80,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "teacher-wizard",
+    "width": 1280,
+    "height": 800,
+    "file": "teacher-wizard-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Cadastrar professor",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Cancelar",
+        "width": 84,
+        "height": 36
+      },
+      {
+        "text": "Próximo",
+        "width": 80,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "student-wizard",
+    "width": 1280,
+    "height": 800,
+    "file": "student-wizard-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Cadastrar aluno",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Cancelar",
+        "width": 84,
+        "height": 36
+      },
+      {
+        "text": "Próximo",
+        "width": 80,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "login",
+    "width": 768,
+    "height": 1024,
+    "file": "login-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Sua escola, mais conectada.",
+    "visibleButtons": [
+      {
+        "text": "Entrar",
+        "width": 315,
+        "height": 50
+      }
+    ]
+  },
+  {
+    "label": "school-selection",
+    "width": 768,
+    "height": 1024,
+    "file": "school-selection-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Escolha sua escola",
+    "visibleButtons": [
+      {
+        "text": "Continuar",
+        "width": 315,
+        "height": 50
+      },
+      {
+        "text": "Voltar ao login",
+        "width": 315,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "overview",
+    "width": 768,
+    "height": 1024,
+    "file": "overview-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Visão geral da escola",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      }
+    ]
+  },
+  {
+    "label": "units",
+    "width": 768,
+    "height": 1024,
+    "file": "units-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Unidades",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cadastrar unidade",
+        "width": 185,
+        "height": 48
+      },
+      {
+        "text": "Convidar novo",
+        "width": 153,
+        "height": 48
+      },
+      {
+        "text": "Associar existente",
+        "width": 185,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "academic-years",
+    "width": 768,
+    "height": 1024,
+    "file": "academic-years-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Anos letivos",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cadastrar ano letivo",
+        "width": 198,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "academic-structure",
+    "width": 768,
+    "height": 1024,
+    "file": "academic-structure-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Séries e turmas",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Séries",
+        "width": 81,
+        "height": 51
+      },
+      {
+        "text": "Turmas",
+        "width": 90,
+        "height": 51
+      },
+      {
+        "text": "Nova série",
+        "width": 123,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "subjects",
+    "width": 768,
+    "height": 1024,
+    "file": "subjects-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Disciplinas",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Nova disciplina",
+        "width": 159,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "teachers",
+    "width": 768,
+    "height": 1024,
+    "file": "teachers-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Professores",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Novo professor",
+        "width": 160,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "students",
+    "width": 768,
+    "height": 1024,
+    "file": "students-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Alunos",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Novo aluno",
+        "width": 128,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-wizard",
+    "width": 768,
+    "height": 1024,
+    "file": "unit-wizard-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Cadastrar unidade",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Voltar às unidades",
+        "width": 185,
+        "height": 48
+      },
+      {
+        "text": "Próximo",
+        "width": 106,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "teacher-wizard",
+    "width": 768,
+    "height": 1024,
+    "file": "teacher-wizard-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Cadastrar professor",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cancelar",
+        "width": 111,
+        "height": 48
+      },
+      {
+        "text": "Próximo",
+        "width": 106,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "student-wizard",
+    "width": 768,
+    "height": 1024,
+    "file": "student-wizard-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Cadastrar aluno",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cancelar",
+        "width": 111,
+        "height": 48
+      },
+      {
+        "text": "Próximo",
+        "width": 106,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "login",
+    "width": 390,
+    "height": 844,
+    "file": "login-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Sua escola, mais conectada.",
+    "visibleButtons": [
+      {
+        "text": "Entrar",
+        "width": 308,
+        "height": 50
+      }
+    ]
+  },
+  {
+    "label": "school-selection",
+    "width": 390,
+    "height": 844,
+    "file": "school-selection-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Escolha sua escola",
+    "visibleButtons": [
+      {
+        "text": "Continuar",
+        "width": 308,
+        "height": 50
+      },
+      {
+        "text": "Voltar ao login",
+        "width": 308,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "overview",
+    "width": 390,
+    "height": 844,
+    "file": "overview-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Visão geral da escola",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      }
+    ]
+  },
+  {
+    "label": "units",
+    "width": 390,
+    "height": 844,
+    "file": "units-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Unidades",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cadastrar unidade",
+        "width": 185,
+        "height": 48
+      },
+      {
+        "text": "Convidar novo",
+        "width": 308,
+        "height": 48
+      },
+      {
+        "text": "Associar existente",
+        "width": 308,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "academic-years",
+    "width": 390,
+    "height": 844,
+    "file": "academic-years-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Anos letivos",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cadastrar ano letivo",
+        "width": 198,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "academic-structure",
+    "width": 390,
+    "height": 844,
+    "file": "academic-structure-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Séries e turmas",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Séries",
+        "width": 81,
+        "height": 51
+      },
+      {
+        "text": "Turmas",
+        "width": 90,
+        "height": 51
+      },
+      {
+        "text": "Nova série",
+        "width": 123,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "subjects",
+    "width": 390,
+    "height": 844,
+    "file": "subjects-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Disciplinas",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Nova disciplina",
+        "width": 159,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "teachers",
+    "width": 390,
+    "height": 844,
+    "file": "teachers-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Professores",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Novo professor",
+        "width": 160,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "students",
+    "width": 390,
+    "height": 844,
+    "file": "students-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Alunos",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Novo aluno",
+        "width": 128,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-wizard",
+    "width": 390,
+    "height": 844,
+    "file": "unit-wizard-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Cadastrar unidade",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Voltar às unidades",
+        "width": 308,
+        "height": 48
+      },
+      {
+        "text": "Próximo",
+        "width": 308,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "teacher-wizard",
+    "width": 390,
+    "height": 844,
+    "file": "teacher-wizard-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Cadastrar professor",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cancelar",
+        "width": 308,
+        "height": 48
+      },
+      {
+        "text": "Próximo",
+        "width": 308,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "student-wizard",
+    "width": 390,
+    "height": 844,
+    "file": "student-wizard-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Cadastrar aluno",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cancelar",
+        "width": 308,
+        "height": 48
+      },
+      {
+        "text": "Próximo",
+        "width": 308,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "login",
+    "width": 360,
+    "height": 800,
+    "file": "login-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Sua escola, mais conectada.",
+    "visibleButtons": [
+      {
+        "text": "Entrar",
+        "width": 278,
+        "height": 50
+      }
+    ]
+  },
+  {
+    "label": "school-selection",
+    "width": 360,
+    "height": 800,
+    "file": "school-selection-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Escolha sua escola",
+    "visibleButtons": [
+      {
+        "text": "Continuar",
+        "width": 278,
+        "height": 50
+      },
+      {
+        "text": "Voltar ao login",
+        "width": 278,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "overview",
+    "width": 360,
+    "height": 800,
+    "file": "overview-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Visão geral da escola",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      }
+    ]
+  },
+  {
+    "label": "units",
+    "width": 360,
+    "height": 800,
+    "file": "units-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Unidades",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cadastrar unidade",
+        "width": 185,
+        "height": 48
+      },
+      {
+        "text": "Convidar novo",
+        "width": 278,
+        "height": 48
+      },
+      {
+        "text": "Associar existente",
+        "width": 278,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "academic-years",
+    "width": 360,
+    "height": 800,
+    "file": "academic-years-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Anos letivos",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cadastrar ano letivo",
+        "width": 198,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "academic-structure",
+    "width": 360,
+    "height": 800,
+    "file": "academic-structure-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Séries e turmas",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Séries",
+        "width": 81,
+        "height": 51
+      },
+      {
+        "text": "Turmas",
+        "width": 90,
+        "height": 51
+      },
+      {
+        "text": "Nova série",
+        "width": 123,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "subjects",
+    "width": 360,
+    "height": 800,
+    "file": "subjects-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Disciplinas",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Nova disciplina",
+        "width": 159,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "teachers",
+    "width": 360,
+    "height": 800,
+    "file": "teachers-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Professores",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Novo professor",
+        "width": 160,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "students",
+    "width": 360,
+    "height": 800,
+    "file": "students-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Alunos",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Novo aluno",
+        "width": 128,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-wizard",
+    "width": 360,
+    "height": 800,
+    "file": "unit-wizard-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Cadastrar unidade",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Voltar às unidades",
+        "width": 278,
+        "height": 48
+      },
+      {
+        "text": "Próximo",
+        "width": 278,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "teacher-wizard",
+    "width": 360,
+    "height": 800,
+    "file": "teacher-wizard-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Cadastrar professor",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cancelar",
+        "width": 278,
+        "height": 48
+      },
+      {
+        "text": "Próximo",
+        "width": 278,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "student-wizard",
+    "width": 360,
+    "height": 800,
+    "file": "student-wizard-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Cadastrar aluno",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Cancelar",
+        "width": 278,
+        "height": 48
+      },
+      {
+        "text": "Próximo",
+        "width": 278,
+        "height": 48
+      }
+    ]
+  }
+]

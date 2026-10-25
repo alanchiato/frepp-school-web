@@ -1,7 +1,7 @@
 .progress { --indicator-size: 36px; position: relative; container-type: inline-size; padding-top: var(--space-1); }
-.track { position: absolute; top: calc(var(--indicator-size) / 2 + var(--space-1)); left: 16.6667%; right: 16.6667%; height: 2px; transform: translateY(-50%); background: var(--border-color); }
+.track { position: absolute; top: calc(var(--indicator-size) / 2 + var(--space-1)); left: calc(50% / var(--step-count)); right: calc(50% / var(--step-count)); height: 2px; transform: translateY(-50%); background: var(--border-color); }
 .fill { display: block; height: 100%; background: var(--blue); transition: width 220ms ease; }
-.stepper { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0; margin: 0; list-style: none; }
+.stepper { position: relative; display: grid; grid-template-columns: repeat(var(--step-count), minmax(0, 1fr)); padding: 0; margin: 0; list-style: none; }
 .stepper li { display: grid; justify-items: center; align-content: start; gap: var(--space-3); min-width: 0; color: var(--muted); font-size: .875rem; }
 .indicator { display: grid; place-items: center; width: var(--indicator-size); height: var(--indicator-size); border: 2px solid var(--border-color); border-radius: 50%; background: var(--surface); transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease, transform 220ms ease, box-shadow 220ms ease; }
 .number, .check { grid-area: 1 / 1; transition: opacity 180ms ease, transform 180ms ease; }

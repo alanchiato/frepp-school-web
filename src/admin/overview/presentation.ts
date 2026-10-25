@@ -21,6 +21,6 @@ export function alertPresentation(alert: OverviewAlert): { title: string; descri
   }
 }
 // Expose only destinations backed by an implemented School Web flow.
-const actionRoutes = new Map<string, string>([['create_unit', '/admin/units'], ['create_academic_year', '/admin/academic-years']])
+const actionRoutes = new Map<string, string>([['create_unit', '/admin/units'], ['create_academic_year', '/admin/academic-years'], ['create_class', '/admin/academic-structure?tab=turmas'], ['add_teacher','/admin/teachers'], ['assign_teachers','/admin/teachers'], ['add_student','/admin/students']])
 export function actionDestination(code: string): string | undefined { return actionRoutes.get(code) }
-export function actionLabel(code: string): string { return code === 'create_unit' ? 'Cadastrar unidade' : code === 'create_academic_year' ? 'Cadastrar ano letivo' : code }
+export function actionLabel(code: string): string { return code === 'create_unit' ? 'Cadastrar unidade' : code === 'create_academic_year' ? 'Cadastrar ano letivo' : code === 'create_class' ? 'Cadastrar turma' : code === 'add_teacher' ? 'Cadastrar professor' : code === 'assign_teachers' ? 'Vincular professores às turmas' : code }

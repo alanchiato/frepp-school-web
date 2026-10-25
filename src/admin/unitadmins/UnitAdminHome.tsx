@@ -44,7 +44,7 @@ export function UnitAdminHome() {
       <div className={styles.academicYear}><Icon name="calendar" /><div><span>Ano letivo vigente</span><strong>{current?.academicYear.current?.year??'Não definido'}</strong></div></div>
     </header>
     <section className={styles.banner}><div><p className="eyebrow">BEM-VINDO(A) AO FREPP SCHOOL</p><h2>{scope.selectedUnit.name}</h2><p>Seu espaço para acompanhar turmas, professores, alunos e responsáveis desta unidade.</p></div><img src={adminHomeWelcome} width="1774" height="887" alt="" aria-hidden="true" /></section>
-    <section aria-label="Principais números da unidade" className={styles.counts}>
+    <section aria-label="Principais números da unidade" tabIndex={0} className={styles.counts}>
       <Card className={`${styles.count} ${scope.units.length>1?styles.unitPicker:''}`}>
         <span className={styles.icon}><Icon name="school" /></span>
         <div className={styles.unitSelector}><span>Unidade</span><strong>{scope.selectedUnit.name}</strong></div>

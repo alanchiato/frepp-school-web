@@ -1,0 +1,1167 @@
+[
+  {
+    "label": "unit-detail",
+    "width": 1440,
+    "height": 900,
+    "file": "unit-detail-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Unidade Centro",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Convidar novo",
+        "width": 115,
+        "height": 36
+      },
+      {
+        "text": "Associar existente",
+        "width": 139,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "teacher-detail",
+    "width": 1440,
+    "height": 900,
+    "file": "teacher-detail-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Perfil do professor",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Editar dados",
+        "width": 105,
+        "height": 36
+      },
+      {
+        "text": "Adicionar vínculo",
+        "width": 132,
+        "height": 36
+      },
+      {
+        "text": "Convidar professor",
+        "width": 143,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "student-detail",
+    "width": 1440,
+    "height": 900,
+    "file": "student-detail-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Perfil do aluno",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Editar aluno",
+        "width": 101,
+        "height": 36
+      },
+      {
+        "text": "Adicionar responsável",
+        "width": 161,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "unit-invite",
+    "width": 1440,
+    "height": 900,
+    "file": "unit-invite-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Convidar administrador",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Convidar depois",
+        "width": 126,
+        "height": 36
+      },
+      {
+        "text": "Enviar convite",
+        "width": 114,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "unit-associate",
+    "width": 1440,
+    "height": 900,
+    "file": "unit-associate-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Associar administrador",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Voltar às unidades",
+        "width": 139,
+        "height": 36
+      },
+      {
+        "text": "Convidar novo",
+        "width": 115,
+        "height": 36
+      },
+      {
+        "text": "Associar administrador",
+        "width": 167,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "unit-admin-overview",
+    "width": 1440,
+    "height": 900,
+    "file": "unit-admin-overview-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Visão geral da unidade",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      }
+    ]
+  },
+  {
+    "label": "unit-admin-units",
+    "width": 1440,
+    "height": 900,
+    "file": "unit-admin-units-1440x900.png",
+    "viewport": [
+      1440,
+      900
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "overflowX": false,
+    "heading": "Minhas unidades",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Abrir visão geral",
+        "width": 127,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "unit-detail",
+    "width": 1280,
+    "height": 800,
+    "file": "unit-detail-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Unidade Centro",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Convidar novo",
+        "width": 115,
+        "height": 36
+      },
+      {
+        "text": "Associar existente",
+        "width": 139,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "teacher-detail",
+    "width": 1280,
+    "height": 800,
+    "file": "teacher-detail-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Perfil do professor",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Editar dados",
+        "width": 105,
+        "height": 36
+      },
+      {
+        "text": "Adicionar vínculo",
+        "width": 132,
+        "height": 36
+      },
+      {
+        "text": "Convidar professor",
+        "width": 143,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "student-detail",
+    "width": 1280,
+    "height": 800,
+    "file": "student-detail-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Perfil do aluno",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Editar aluno",
+        "width": 101,
+        "height": 36
+      },
+      {
+        "text": "Adicionar responsável",
+        "width": 161,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "unit-invite",
+    "width": 1280,
+    "height": 800,
+    "file": "unit-invite-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Convidar administrador",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Convidar depois",
+        "width": 126,
+        "height": 36
+      },
+      {
+        "text": "Enviar convite",
+        "width": 114,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "unit-associate",
+    "width": 1280,
+    "height": 800,
+    "file": "unit-associate-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Associar administrador",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Voltar às unidades",
+        "width": 139,
+        "height": 36
+      },
+      {
+        "text": "Convidar novo",
+        "width": 115,
+        "height": 36
+      },
+      {
+        "text": "Associar administrador",
+        "width": 167,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "unit-admin-overview",
+    "width": 1280,
+    "height": 800,
+    "file": "unit-admin-overview-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Visão geral da unidade",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      }
+    ]
+  },
+  {
+    "label": "unit-admin-units",
+    "width": 1280,
+    "height": 800,
+    "file": "unit-admin-units-1280x800.png",
+    "viewport": [
+      1280,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "0.75",
+    "rootFont": "16px",
+    "scrollWidth": 1280,
+    "clientWidth": 1280,
+    "overflowX": false,
+    "heading": "Minhas unidades",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 82,
+        "height": 38
+      },
+      {
+        "text": "Abrir visão geral",
+        "width": 127,
+        "height": 36
+      }
+    ]
+  },
+  {
+    "label": "unit-detail",
+    "width": 768,
+    "height": 1024,
+    "file": "unit-detail-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Unidade Centro",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Convidar novo",
+        "width": 153,
+        "height": 48
+      },
+      {
+        "text": "Associar existente",
+        "width": 185,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "teacher-detail",
+    "width": 768,
+    "height": 1024,
+    "file": "teacher-detail-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Perfil do professor",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Editar dados",
+        "width": 140,
+        "height": 48
+      },
+      {
+        "text": "Adicionar vínculo",
+        "width": 175,
+        "height": 48
+      },
+      {
+        "text": "Convidar professor",
+        "width": 191,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "student-detail",
+    "width": 768,
+    "height": 1024,
+    "file": "student-detail-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Perfil do aluno",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Editar aluno",
+        "width": 135,
+        "height": 48
+      },
+      {
+        "text": "Adicionar responsável",
+        "width": 214,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-invite",
+    "width": 768,
+    "height": 1024,
+    "file": "unit-invite-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Convidar administrador",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Convidar depois",
+        "width": 168,
+        "height": 48
+      },
+      {
+        "text": "Enviar convite",
+        "width": 151,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-associate",
+    "width": 768,
+    "height": 1024,
+    "file": "unit-associate-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Associar administrador",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Voltar às unidades",
+        "width": 185,
+        "height": 48
+      },
+      {
+        "text": "Convidar novo",
+        "width": 153,
+        "height": 48
+      },
+      {
+        "text": "Associar administrador",
+        "width": 222,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-admin-overview",
+    "width": 768,
+    "height": 1024,
+    "file": "unit-admin-overview-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Visão geral da unidade",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      }
+    ]
+  },
+  {
+    "label": "unit-admin-units",
+    "width": 768,
+    "height": 1024,
+    "file": "unit-admin-units-768x1024.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "overflowX": false,
+    "heading": "Minhas unidades",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Abrir visão geral",
+        "width": 169,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-detail",
+    "width": 390,
+    "height": 844,
+    "file": "unit-detail-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Unidade Centro",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Convidar novo",
+        "width": 308,
+        "height": 48
+      },
+      {
+        "text": "Associar existente",
+        "width": 308,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "teacher-detail",
+    "width": 390,
+    "height": 844,
+    "file": "teacher-detail-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Perfil do professor",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Editar dados",
+        "width": 140,
+        "height": 48
+      },
+      {
+        "text": "Adicionar vínculo",
+        "width": 175,
+        "height": 48
+      },
+      {
+        "text": "Convidar professor",
+        "width": 191,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "student-detail",
+    "width": 390,
+    "height": 844,
+    "file": "student-detail-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Perfil do aluno",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Editar aluno",
+        "width": 135,
+        "height": 48
+      },
+      {
+        "text": "Adicionar responsável",
+        "width": 214,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-invite",
+    "width": 390,
+    "height": 844,
+    "file": "unit-invite-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Convidar administrador",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Convidar depois",
+        "width": 308,
+        "height": 48
+      },
+      {
+        "text": "Enviar convite",
+        "width": 308,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-associate",
+    "width": 390,
+    "height": 844,
+    "file": "unit-associate-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Associar administrador",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Voltar às unidades",
+        "width": 308,
+        "height": 48
+      },
+      {
+        "text": "Convidar novo",
+        "width": 308,
+        "height": 48
+      },
+      {
+        "text": "Associar administrador",
+        "width": 308,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-admin-overview",
+    "width": 390,
+    "height": 844,
+    "file": "unit-admin-overview-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Visão geral da unidade",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      }
+    ]
+  },
+  {
+    "label": "unit-admin-units",
+    "width": 390,
+    "height": 844,
+    "file": "unit-admin-units-390x844.png",
+    "viewport": [
+      390,
+      844
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "overflowX": false,
+    "heading": "Minhas unidades",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Abrir visão geral",
+        "width": 308,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-detail",
+    "width": 360,
+    "height": 800,
+    "file": "unit-detail-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Unidade Centro",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Convidar novo",
+        "width": 278,
+        "height": 48
+      },
+      {
+        "text": "Associar existente",
+        "width": 278,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "teacher-detail",
+    "width": 360,
+    "height": 800,
+    "file": "teacher-detail-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Perfil do professor",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Editar dados",
+        "width": 140,
+        "height": 48
+      },
+      {
+        "text": "Adicionar vínculo",
+        "width": 175,
+        "height": 48
+      },
+      {
+        "text": "Convidar professor",
+        "width": 191,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "student-detail",
+    "width": 360,
+    "height": 800,
+    "file": "student-detail-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Perfil do aluno",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Editar aluno",
+        "width": 135,
+        "height": 48
+      },
+      {
+        "text": "Adicionar responsável",
+        "width": 214,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-invite",
+    "width": 360,
+    "height": 800,
+    "file": "unit-invite-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Convidar administrador",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Convidar depois",
+        "width": 278,
+        "height": 48
+      },
+      {
+        "text": "Enviar convite",
+        "width": 278,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-associate",
+    "width": 360,
+    "height": 800,
+    "file": "unit-associate-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Associar administrador",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Voltar às unidades",
+        "width": 278,
+        "height": 48
+      },
+      {
+        "text": "Convidar novo",
+        "width": 278,
+        "height": 48
+      },
+      {
+        "text": "Associar administrador",
+        "width": 278,
+        "height": 48
+      }
+    ]
+  },
+  {
+    "label": "unit-admin-overview",
+    "width": 360,
+    "height": 800,
+    "file": "unit-admin-overview-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Visão geral da unidade",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      }
+    ]
+  },
+  {
+    "label": "unit-admin-units",
+    "width": 360,
+    "height": 800,
+    "file": "unit-admin-units-360x800.png",
+    "viewport": [
+      360,
+      800
+    ],
+    "devicePixelRatio": 1,
+    "bodyZoom": "1",
+    "rootFont": "16px",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "overflowX": false,
+    "heading": "Minhas unidades",
+    "visibleButtons": [
+      {
+        "text": "Sair",
+        "width": 108,
+        "height": 50
+      },
+      {
+        "text": "Abrir visão geral",
+        "width": 278,
+        "height": 48
+      }
+    ]
+  }
+]

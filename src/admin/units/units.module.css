@@ -1,4 +1,5 @@
 .page { display: grid; gap: var(--space-6); max-width: 900px; }
+.detailPage { max-width: 1100px; }
 .page > header h1 { margin: 0 0 var(--space-2); }
 .page > header p:last-child { margin-bottom: 0; }
 .heading { display: flex; align-items: end; justify-content: space-between; gap: var(--space-5); flex-wrap: wrap; }
@@ -11,6 +12,15 @@
 .unit { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
 .unit > div { display: flex; align-items: center; gap: var(--space-4); min-width: 0; }
 .unit strong { overflow-wrap: anywhere; }
+.unitLink, .returnLink { display: inline-flex; align-items: center; gap: .3rem; color: inherit; text-decoration: none; transform-origin: left center; transition: color .22s ease, transform .22s ease; }
+.unitLink:visited, .returnLink:visited { color: inherit; }
+.unitLink:hover, .unitLink:focus-visible, .returnLink:hover, .returnLink:focus-visible { color: var(--blue); text-decoration: none; transform: scale(1.035); }
+.unitLink:focus-visible, .returnLink:focus-visible { outline: var(--focus); outline-offset: 3px; border-radius: 2px; }
+.freppMark { display: inline-flex; align-items: center; gap: 2px; width: 16px; height: 13px; margin-left: 2px; }
+.freppMark i { width: 3px; height: 11px; border-radius: 3px; background: var(--yellow); opacity: 0; transform: translateY(4px) scaleY(.5); transition: opacity .2s ease, transform .25s ease; }
+.freppMark i:nth-child(2) { height: 9px; transition-delay: .06s; }
+.freppMark i:nth-child(3) { height: 7px; transition-delay: .12s; }
+.unitLink:hover .freppMark i, .unitLink:focus-visible .freppMark i, .returnLink:hover .freppMark i, .returnLink:focus-visible .freppMark i { opacity: 1; transform: translateY(0) scaleY(1); }
 .unitLocation { display: block; margin-top: var(--space-1); color: var(--text); }
 .unitActions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
 .unitIcon { width: 46px; height: 46px; }
@@ -30,7 +40,8 @@
 .choices legend { font-weight: 650; color: var(--navy); padding-inline: var(--space-2); }
 .checkbox { display: flex; align-items: center; gap: var(--space-3); min-height: 42px; }
 .checkbox input { width: 18px; height: 18px; accent-color: var(--blue); }
-.back { justify-self: start; }
+.returnLinks { display: flex; align-items: center; gap: var(--space-6); min-width: 0; }
+.returnLink { font-weight: 650; min-width: 0; }
 .wizardCard { min-width: 0; }
 .wizardForm { animation: wizard-enter 200ms ease-out; }
 .wizardForm h2 { margin: 0; font-size: 1.25rem; }
@@ -44,5 +55,15 @@
 .review div { padding: var(--space-3); background: var(--surface-alt); border-radius: var(--radius-sm); min-width: 0; }
 .review dt { font-size: .8rem; color: var(--text); }
 .review dd { margin: var(--space-1) 0 0; font-weight: 650; overflow-wrap: anywhere; }
+.detailCard { display: grid; gap: var(--space-5); }
+.detailCard h2,.detailCard p { margin: 0; }
+.detailHeading { display: flex; justify-content: space-between; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+.detailHeading p { font-size: .875rem; }
+.adminList { list-style: none; display: grid; gap: var(--space-3); margin: 0; padding: 0; }
+.adminList li { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); padding: var(--space-4); border: var(--border); border-radius: var(--radius-sm); }
+.adminList li > div { display: grid; gap: var(--space-1); min-width: 0; }
+.adminList span { overflow-wrap: anywhere; }
+.adminStatus { flex-shrink: 0; padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--blue-soft); color: var(--navy); font-size: .8rem; font-weight: 650; }
+@media (prefers-reduced-motion: reduce) { .unitLink,.returnLink,.freppMark i { transition: none; } .unitLink:hover,.unitLink:focus-visible,.returnLink:hover,.returnLink:focus-visible { transform: none; } }
 @media (max-width: 600px) { .fields { grid-template-columns: 1fr; } .actions { justify-content: stretch; } .actions button { flex: 1 1 100%; } .unit > button { width: 100%; } }
-@media (max-width: 600px) { .review { grid-template-columns: 1fr; } .unitActions, .unitActions button { width: 100%; } }
+@media (max-width: 600px) { .review { grid-template-columns: 1fr; } .unitActions, .unitActions button { width: 100%; } .adminList li { align-items: flex-start; flex-direction: column; } .returnLinksPair { gap: var(--space-3); } .returnLinksPair .returnLink { flex: 1 1 0; } }

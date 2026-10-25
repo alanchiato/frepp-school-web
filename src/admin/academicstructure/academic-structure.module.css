@@ -1,0 +1,49 @@
+.page { display: grid; gap: var(--space-6); max-width: 1120px; }
+.pageHeading h1 { margin: 0 0 var(--space-2); }
+.pageHeading p:last-child { margin-bottom: 0; }
+.tabs { display: flex; gap: var(--space-6); border-bottom: var(--border); }
+.tabs button { appearance: none; border: 0; border-bottom: 3px solid transparent; background: transparent; padding: var(--space-3) var(--space-4); color: var(--text); font: inherit; font-weight: 700; cursor: pointer; }
+.tabs button[aria-selected='true'] { color: var(--blue); border-bottom-color: var(--blue); }
+.tabs button:hover { color: var(--blue); }
+.tabs button:focus-visible { outline: var(--focus); outline-offset: 2px; }
+.panel { display: grid; gap: var(--space-5); min-width: 0; }
+.sectionHeading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4); }
+.sectionHeading h2 { margin: 0 0 var(--space-2); font-size: 1.5rem; }
+.sectionHeading h2:focus { outline: none; }
+.sectionHeading p { margin: 0; }
+.empty { display: grid; justify-items: start; gap: var(--space-3); padding: var(--space-8); }
+.empty h3, .empty p { margin: 0; }
+.tableCard { padding: 0; overflow: hidden; }
+.tableCard table { width: 100%; border-collapse: collapse; text-align: left; }
+.tableCard th { color: var(--text); background: var(--surface-alt); font-size: .8rem; font-weight: 700; }
+.tableCard th, .tableCard td { padding: var(--space-3) var(--space-4); border-bottom: var(--border); }
+.tableCard tr:last-child td { border-bottom: 0; }
+.tableCard td { overflow-wrap: anywhere; }
+.tableCard td strong { color: var(--navy); }
+.tableCard td button { padding-block: var(--space-2); }
+.filters { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+.filters label, .form label { display: grid; gap: var(--space-2); color: var(--navy); font-weight: 650; }
+.filters select, .form input, .form select { width: 100%; min-width: 0; padding: var(--space-3) var(--space-4); border: 1px solid var(--input-border); border-radius: var(--radius-sm); background: var(--surface); color: var(--navy); font: inherit; }
+.filters select:focus-visible, .form input:focus-visible, .form select:focus-visible { outline: var(--focus); outline-offset: 2px; }
+.form { display: grid; gap: var(--space-5); }
+.form h3 { margin: 0; font-size: 1.2rem; }
+.formGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-4); }
+.formActions { display: flex; justify-content: flex-end; gap: var(--space-3); padding-top: var(--space-5); border-top: var(--border); flex-wrap: wrap; }
+.formActions > :first-child { margin-right: auto; }
+.hint { margin: 0; padding: var(--space-3) var(--space-4); background: var(--blue-soft); border-radius: var(--radius-sm); }
+.error { margin: 0; padding: var(--space-3) var(--space-4); color: var(--error); background: var(--error-soft); border-radius: var(--radius-sm); }
+.back { display: inline-flex; justify-self: start; align-items: center; gap: .3rem; color: inherit; font-weight: 650; text-decoration: none; transform-origin: left center; transition: color .22s ease, transform .22s ease; }
+.back:visited { color: inherit; }
+.back:hover, .back:focus-visible { color: var(--blue); transform: scale(1.035); }
+.back:focus-visible { outline: var(--focus); outline-offset: 3px; }
+.freppMark { display: inline-flex; align-items: center; gap: 2px; width: 16px; height: 13px; margin-left: 2px; }
+.freppMark i { width: 3px; height: 11px; border-radius: 3px; background: var(--yellow); opacity: 0; transform: translateY(4px) scaleY(.5); transition: opacity .2s ease, transform .25s ease; }
+.freppMark i:nth-child(2) { height: 9px; transition-delay: .06s; }
+.freppMark i:nth-child(3) { height: 7px; transition-delay: .12s; }
+.back:hover .freppMark i, .back:focus-visible .freppMark i { opacity: 1; transform: translateY(0) scaleY(1); }
+@media (max-width: 700px) { .formGrid { grid-template-columns: 1fr; } .tableCard { padding: var(--space-2); } .tableCard table, .tableCard tbody, .tableCard tr, .tableCard td { display: block; } .tableCard thead { display: none; } .tableCard tr { padding: var(--space-3); border-bottom: var(--border); } .tableCard tr:last-child { border-bottom: 0; } .tableCard td { display: flex; justify-content: space-between; gap: var(--space-3); padding: var(--space-2) 0; border: 0; text-align: right; } .tableCard td::before { content: attr(data-label); color: var(--text); text-align: left; } }
+@media (max-width: 480px) { .filters label { width: 100%; } .formActions button { flex: 1 1 100%; } }
+@media (prefers-reduced-motion: reduce) { .back, .freppMark i { transition: none; } .back:hover, .back:focus-visible { transform: none; } }
+.classLink{display:inline-flex;align-items:center;gap:.3rem;color:var(--navy);font-weight:700;text-decoration:none;transform-origin:left center;transition:color .22s ease,transform .22s ease}
+.classLink:visited{color:var(--navy)}.classLink:hover,.classLink:focus-visible{color:var(--blue);transform:scale(1.035)}.classLink:focus-visible{outline:var(--focus);outline-offset:3px}.classLink:hover .freppMark i,.classLink:focus-visible .freppMark i{opacity:1;transform:translateY(0) scaleY(1)}
+@media(prefers-reduced-motion:reduce){.classLink{transition:none}.classLink:hover,.classLink:focus-visible{transform:none}}

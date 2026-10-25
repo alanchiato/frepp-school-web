@@ -1,8 +1,10 @@
-export type IconName = 'home' | 'school' | 'calendar' | 'people' | 'teacher' | 'student' | 'guardians' | 'check' | 'alert' | 'lock' | 'arrow' | 'chevronDown' | 'logout' | 'mail'
+export type IconName = 'home' | 'school' | 'calendar' | 'layers' | 'book' | 'people' | 'teacher' | 'student' | 'guardians' | 'check' | 'alert' | 'lock' | 'arrow' | 'chevronDown' | 'logout' | 'mail'
 const paths: Record<IconName, string> = {
   home: 'm3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8',
   school: 'M4 21V9h6V3h4v6h6v12M2 21h20M8 13v2m0 3v1m8-6v2m0 3v1M10 21v-4h4v4M11 6h2',
   calendar: 'M4 5h16v16H4zM8 3v4m8-4v4M4 11h16',
+  layers: 'M3 7 12 3l9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4',
+  book: 'M3 5.5C6 4 9 4 12 6v14c-3-2-6-2-9-.5Zm18 0c-3-1.5-6-1.5-9 .5v14c3-2 6-2 9-.5Z',
   people: 'M16 21v-3a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v3M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8m10 11v-3a4 4 0 0 0-3-4m0-11a4 4 0 0 1 0 8',
   teacher: 'M19 21v-3a5 5 0 0 0-5-5h-4a5 5 0 0 0-5 5v3M12 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8',
   student: 'm2 8 10-5 10 5-10 5-10-5m4 2v7l6 3 6-3v-7m4-2v8',
