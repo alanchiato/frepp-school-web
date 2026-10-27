@@ -14,6 +14,7 @@ function Navigation({ admin, unitAdmin, onNavigate }: { admin: boolean; unitAdmi
   {(admin||unitAdmin) && <NavLink to="/admin/subjects" className={styles.navLink} onClick={onNavigate}><Icon name="book" />Disciplinas</NavLink>}
   {(admin||unitAdmin) && <NavLink to="/admin/teachers" className={styles.navLink} onClick={onNavigate}><Icon name="teacher" />Professores</NavLink>}
   {(admin||unitAdmin) && <NavLink to="/admin/students" className={styles.navLink} onClick={onNavigate}><Icon name="student" />Alunos</NavLink>}
+  {(admin||unitAdmin) && <NavLink to="/admin/guardians" className={styles.navLink} onClick={onNavigate}><Icon name="guardians" />Responsáveis</NavLink>}
 </nav> }
 export function AppShell({ children }: { children: ReactNode }) {
   const { state, logout } = useSession()

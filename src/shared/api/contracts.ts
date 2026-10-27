@@ -49,10 +49,16 @@ export interface Enrollment { id:string; studentId:string; classId:string; start
 export type EnrollmentInput = { studentId:string; classId:string; startDate:string; endDate?:string|null }
 export interface Guardian { id:string; fullName:string; preferredName:string|null; documentNumber:string|null; email:string|null; phone:string|null; status:'ACTIVE'|'INACTIVE'; createdAt:string; updatedAt:string }
 export type GuardianInput = { fullName:string; preferredName?:string|null; documentNumber?:string|null; email?:string|null; phone?:string|null }
+export interface GuardianFamilySummary { guardian:Guardian; linkedStudents:number }
+export interface GuardianFamilyPage { items:GuardianFamilySummary[]; page:number; pageSize:number; total:number; withLinks:number; withoutLinks:number }
+export interface GuardianFamilyStudent { id:string; studentId:string; studentName:string; relationship:string; isLegalGuardian:boolean; isPrimaryContact:boolean; isFinancialResponsible:boolean; status:'ACTIVE'|'INACTIVE'; unitId:string|null; unitName:string|null; className:string|null; updatedAt:string }
+export interface GuardianFamilyAccess { identityStatus:'NOT_CONFIGURED'|'INVITED'|'ACTIVE'|'INACTIVE'; invitationStatus:'NONE'|'PENDING'|'EXPIRED'; loginEmail:string|null }
+export interface GuardianFamilyDetail { guardian:Guardian; students:GuardianFamilyStudent[]; access:GuardianFamilyAccess }
 export interface StudentGuardian { id:string; studentId:string; guardianId:string; relationship:string; isLegalGuardian:boolean; isPrimaryContact:boolean; isFinancialResponsible:boolean; status:'ACTIVE'|'INACTIVE'; createdAt:string; updatedAt:string }
 export type StudentGuardianInput = { studentId:string; guardianId:string; relationship:string; isLegalGuardian?:boolean; isPrimaryContact?:boolean; isFinancialResponsible?:boolean }
 export interface TeacherUser { userId: string; teacherId: string }
 export interface TeacherOnboarding { profileType: 'TEACHER'; profileId: string; userId: string; email: string; userStatus: 'INVITED' | 'ACTIVE'; role: 'TEACHER'; activation: 'invitation_sent' | 'invitation_pending' | 'not_required' }
+export interface GuardianOnboarding { profileType: 'GUARDIAN'; profileId: string; userId: string; email: string; userStatus: 'INVITED' | 'ACTIVE'; role: 'GUARDIAN'; activation: 'invitation_sent' | 'invitation_pending' | 'not_required' }
 export interface Classroom { id: string; schoolUnitId: string; academicYearId: string; gradeLevelId: string | null; name: string; createdAt: string; updatedAt: string }
 export interface ClassWorkspace {
   class: Classroom; unitName: string; academicYear: number; gradeLevelName: string | null

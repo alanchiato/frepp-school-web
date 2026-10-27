@@ -24,8 +24,9 @@ describe('Cadastro de professores',()=>{
   it('conta turmas distintas mesmo quando o professor leciona duas disciplinas na mesma turma',async()=>{
     const assignment={id:'99999999-9999-4999-8999-999999999999',teacherId:teacher.id,classId:classroom.id,subjectId:subject.id,role:'SUBJECT_TEACHER',startDate:'2026-02-03',endDate:null,status:'ACTIVE',createdAt:teacher.createdAt,updatedAt:teacher.updatedAt}
     const secondAssignment={...assignment,id:'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',subjectId:'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb'}
-    renderPage({teachers:vi.fn().mockResolvedValue({teachers:[teacher]}),teacherAssignments:vi.fn().mockResolvedValue({teacherAssignments:[assignment,secondAssignment]}),classrooms:vi.fn().mockResolvedValue({classes:[classroom]}),subjects:vi.fn().mockResolvedValue({subjects:[subject]}),units:vi.fn().mockResolvedValue({units:[unit]}),gradeLevels:vi.fn().mockResolvedValue({gradeLevels:[grade]}),academicYears:vi.fn().mockResolvedValue({academicYears:[year]}),teacherUsers:vi.fn().mockResolvedValue({teacherUsers:[]})})
+    const view=renderPage({teachers:vi.fn().mockResolvedValue({teachers:[teacher]}),teacherAssignments:vi.fn().mockResolvedValue({teacherAssignments:[assignment,secondAssignment]}),classrooms:vi.fn().mockResolvedValue({classes:[classroom]}),subjects:vi.fn().mockResolvedValue({subjects:[subject]}),units:vi.fn().mockResolvedValue({units:[unit]}),gradeLevels:vi.fn().mockResolvedValue({gradeLevels:[grade]}),academicYears:vi.fn().mockResolvedValue({academicYears:[year]}),teacherUsers:vi.fn().mockResolvedValue({teacherUsers:[]})})
     const row=within(await screen.findByRole('table')).getAllByRole('row')[1]
+    expect(view.container.querySelectorAll('[data-person-avatar="small"]')).toHaveLength(1)
     expect(within(row).getAllByRole('cell')[2]).toHaveTextContent('1')
   })
 

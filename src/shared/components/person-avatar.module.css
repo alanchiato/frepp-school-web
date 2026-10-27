@@ -1,0 +1,6 @@
+.avatar { display: inline-grid; place-items: center; flex: 0 0 auto; overflow: hidden; background: var(--blue-soft); color: var(--blue); font-weight: 800; line-height: 1; user-select: none; }
+.small { width: 34px; height: 34px; border-radius: 11px; font-size: .7rem; }
+.large { width: 64px; height: 64px; border-radius: 20px; font-size: 1.3rem; }
+.identity { display: inline-flex; align-items: center; gap: var(--space-3); min-width: 0; max-width: 100%; text-align: left; }
+.content { display: grid; justify-items: start; gap: 2px; min-width: 0; }
+@media (max-width: 700px) { .small { width: 30px; height: 30px; border-radius: 10px; font-size: .65rem; } }

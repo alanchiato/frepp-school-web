@@ -83,10 +83,21 @@
 .assignmentStatus[data-status='ENDED'], .assignmentStatus[data-status='CANCELLED'] { color: var(--text); }
 .assignmentTable td button { white-space: nowrap; }
 .editAssignmentForm { padding-top: var(--space-5); border-top: var(--border); }
+.editAssignmentForm .formGrid { align-items: end; min-width: 0; }
+.editAssignmentForm .formGrid > label { min-width: 0; }
+.dateField { display: flex; align-items: center; box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; min-height: 50px; padding: 0 var(--space-4); overflow: hidden; border: 1px solid var(--input-border); border-radius: var(--radius-sm); background: var(--surface); }
+.dateField:focus-within { outline: var(--focus); outline-offset: 2px; }
+.editAssignmentForm .dateField input[type='date'] { flex: 1 1 auto; box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--navy); font-size: 1rem; outline: none; }
+.editAssignmentForm .dateField input[type='date']:focus-visible { outline: none; }
 .editAssignmentForm h3 { margin: 0 0 var(--space-2); }
 .editAssignmentForm p { margin: 0; }
 .notice { margin: 0; padding: var(--space-3) var(--space-4); background: var(--blue-soft); border-radius: var(--radius-sm); }
 @media (max-width: 800px) { .review { grid-template-columns: 1fr; } }
+@media (max-width: 1023px) {
+  .editAssignmentForm .formGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+  .editAssignmentForm .formGrid > label { font-size: .875rem; }
+  .dateField { min-height: 48px; padding-inline: var(--space-2); }
+}
 @media (max-width: 700px) { .wizard .formGrid { grid-template-columns: 1fr; } }
 @media (max-width: 700px) { .assignmentTable { padding: 0 var(--space-3); } .assignmentTable td small { text-align: right; } }
 @media (prefers-reduced-motion: reduce) { .wizardCard { animation: none; } }

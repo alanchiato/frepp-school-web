@@ -28,11 +28,12 @@ describe('fluxo de unidades', () => {
     const admin={userId:'33333333-3333-3333-3333-333333333333',fullName:'Ana Costa',email:'ana@escola.test',status:'INVITED' as const}
     const unitDetails=vi.fn().mockResolvedValue({unit:details})
     const assignedUnitAdmins=vi.fn().mockResolvedValue({admins:[admin]})
-    renderPage({units:vi.fn().mockResolvedValue({units:[unit]}),unitDetails,assignedUnitAdmins})
+    const view=renderPage({units:vi.fn().mockResolvedValue({units:[unit]}),unitDetails,assignedUnitAdmins})
     fireEvent.click(await screen.findByRole('link',{name:unit.name}))
     expect(await screen.findByRole('heading',{name:unit.name})).toBeInTheDocument()
     expect(screen.getByText('Rua das Flores')).toBeInTheDocument()
     expect(screen.getByText('Ana Costa')).toBeInTheDocument()
+    expect(view.container.querySelectorAll('[data-person-avatar="small"]')).toHaveLength(1)
     expect(screen.getByText('Convite pendente')).toBeInTheDocument()
     expect(screen.getByRole('button',{name:'Convidar novo'})).toBeInTheDocument()
     expect(screen.getByRole('button',{name:'Associar existente'})).toBeInTheDocument()

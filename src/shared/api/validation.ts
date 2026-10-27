@@ -1,4 +1,4 @@
-import type { AcademicYear, GradeLevel, Classroom, ClassWorkspace, Subject, Teacher, TeacherAssignment, TeacherOnboarding, TeacherUser, Student, Enrollment, Guardian, StudentGuardian, AdminOverview, Authenticated, LoginResult, OverviewAlert, School, Session, SetupStep, UnitOption, UnitDetails, UnitAdminInvite, AvailableUnitAdmin, AssignedUnitAdmin, UnitAdminAssignment, UnitOverview } from './contracts'
+import type { AcademicYear, GradeLevel, Classroom, ClassWorkspace, Subject, Teacher, TeacherAssignment, TeacherOnboarding, GuardianOnboarding, TeacherUser, Student, Enrollment, Guardian, GuardianFamilyPage, GuardianFamilyDetail, StudentGuardian, AdminOverview, Authenticated, LoginResult, OverviewAlert, School, Session, SetupStep, UnitOption, UnitDetails, UnitAdminInvite, AvailableUnitAdmin, AssignedUnitAdmin, UnitAdminAssignment, UnitOverview } from './contracts'
 import { ApiError } from './errors'
 
 // Small boundary readers check transport shapes, without reproducing Core rules.
@@ -45,6 +45,11 @@ export function readTeacherOnboarding(value: unknown): {onboarding:TeacherOnboar
   if (v.profileType!=='TEACHER'||v.role!=='TEACHER'||(v.userStatus!=='INVITED'&&v.userStatus!=='ACTIVE')||!['invitation_sent','invitation_pending','not_required'].includes(String(v.activation))) throw invalid()
   return {onboarding:{profileType:'TEACHER',profileId:string(v.profileId),userId:string(v.userId),email:string(v.email),userStatus:v.userStatus,role:'TEACHER',activation:v.activation as TeacherOnboarding['activation']}}
 }
+export function readGuardianOnboarding(value: unknown): {onboarding:GuardianOnboarding} {
+  const v=object(object(value).onboarding)
+  if(v.profileType!=='GUARDIAN'||v.role!=='GUARDIAN'||(v.userStatus!=='INVITED'&&v.userStatus!=='ACTIVE')||!['invitation_sent','invitation_pending','not_required'].includes(String(v.activation)))throw invalid()
+  return {onboarding:{profileType:'GUARDIAN',profileId:string(v.profileId),userId:string(v.userId),email:string(v.email),userStatus:v.userStatus,role:'GUARDIAN',activation:v.activation as GuardianOnboarding['activation']}}
+}
 function student(value:unknown):Student {const v=object(value);if(v.status!=='ACTIVE'&&v.status!=='INACTIVE')throw invalid();return {id:string(v.id),fullName:string(v.fullName),preferredName:v.preferredName===null?null:string(v.preferredName),birthDate:v.birthDate===null?null:date(v.birthDate),documentNumber:v.documentNumber===null?null:string(v.documentNumber),status:v.status,createdAt:string(v.createdAt),updatedAt:string(v.updatedAt)}}
 export function readStudents(value:unknown):{students:Student[]}{return {students:array(object(value).students,student)}}
 export function readStudent(value:unknown):{student:Student}{return {student:student(object(value).student)}}
@@ -55,6 +60,15 @@ export function readStudentWithEnrollment(value:unknown):{student:Student;enroll
 function guardian(value:unknown):Guardian{const v=object(value);if(v.status!=='ACTIVE'&&v.status!=='INACTIVE')throw invalid();return {id:string(v.id),fullName:string(v.fullName),preferredName:v.preferredName===null?null:string(v.preferredName),documentNumber:v.documentNumber===null?null:string(v.documentNumber),email:v.email===null?null:string(v.email),phone:v.phone===null?null:string(v.phone),status:v.status,createdAt:string(v.createdAt),updatedAt:string(v.updatedAt)}}
 export function readGuardians(value:unknown):{guardians:Guardian[]}{return {guardians:array(object(value).guardians,guardian)}}
 export function readGuardian(value:unknown):{guardian:Guardian}{return {guardian:guardian(object(value).guardian)}}
+export function readGuardianFamilies(value:unknown):{guardianFamilies:GuardianFamilyPage}{
+  const v=object(object(value).guardianFamilies)
+  return {guardianFamilies:{items:array(v.items,item=>{const row=object(item);return {guardian:guardian(row.guardian),linkedStudents:number(row.linkedStudents)}}),page:number(v.page),pageSize:number(v.pageSize),total:number(v.total),withLinks:number(v.withLinks),withoutLinks:number(v.withoutLinks)}}
+}
+export function readGuardianFamily(value:unknown):{guardianFamily:GuardianFamilyDetail}{
+  const v=object(object(value).guardianFamily),a=object(v.access)
+  if(!['NOT_CONFIGURED','INVITED','ACTIVE','INACTIVE'].includes(String(a.identityStatus))||!['NONE','PENDING','EXPIRED'].includes(String(a.invitationStatus)))throw invalid()
+  return {guardianFamily:{guardian:guardian(v.guardian),students:array(v.students,item=>{const s=object(item);if(s.status!=='ACTIVE'&&s.status!=='INACTIVE')throw invalid();return {id:string(s.id),studentId:string(s.studentId),studentName:string(s.studentName),relationship:string(s.relationship),isLegalGuardian:boolean(s.isLegalGuardian),isPrimaryContact:boolean(s.isPrimaryContact),isFinancialResponsible:boolean(s.isFinancialResponsible),status:s.status,unitId:s.unitId===null?null:string(s.unitId),unitName:s.unitName===null?null:string(s.unitName),className:s.className===null?null:string(s.className),updatedAt:string(s.updatedAt)}}),access:{identityStatus:a.identityStatus as GuardianFamilyDetail['access']['identityStatus'],invitationStatus:a.invitationStatus as GuardianFamilyDetail['access']['invitationStatus'],loginEmail:a.loginEmail===null?null:string(a.loginEmail)}}}
+}
 function studentGuardian(value:unknown):StudentGuardian{const v=object(value);if(v.status!=='ACTIVE'&&v.status!=='INACTIVE')throw invalid();return {id:string(v.id),studentId:string(v.studentId),guardianId:string(v.guardianId),relationship:string(v.relationship),isLegalGuardian:boolean(v.isLegalGuardian),isPrimaryContact:boolean(v.isPrimaryContact),isFinancialResponsible:boolean(v.isFinancialResponsible),status:v.status,createdAt:string(v.createdAt),updatedAt:string(v.updatedAt)}}
 export function readStudentGuardians(value:unknown):{studentGuardians:StudentGuardian[]}{return {studentGuardians:array(object(value).studentGuardians,studentGuardian)}}
 export function readStudentGuardian(value:unknown):{studentGuardian:StudentGuardian}{return {studentGuardian:studentGuardian(object(value).studentGuardian)}}

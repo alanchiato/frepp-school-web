@@ -4,6 +4,7 @@ import { useSession } from '../../session/context'
 import type { UnitOption, UnitDetails, AvailableUnitAdmin, AssignedUnitAdmin } from '../../shared/api/contracts'
 import { ApiError, errorMessage } from '../../shared/api/errors'
 import { Button, Card, ErrorState } from '../../shared/components/ui'
+import { PersonIdentity } from '../../shared/components/PersonAvatar'
 import { Icon } from '../../shared/components/Icon'
 import { UnitStepper } from './UnitStepper'
 import styles from './units.module.css'
@@ -218,7 +219,7 @@ export function UnitsPage() {
             ['Cidade',detail.city],['Estado (UF)',detail.state],['CEP',detail.postalCode],['País',detail.countryCode==='BR'?'Brasil':detail.countryCode],
           ] as const).map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value||'Não informado'}</dd></div>)}</dl></Card>
           <Card className={styles.detailCard}><div className={styles.detailHeading}><div><h2>Administradores da unidade</h2><p>Administradores com vínculo ativo a esta unidade.</p></div><div className={styles.unitActions}><Button onClick={()=>showInvite(detail)}>Convidar novo</Button><Button variant="secondary" onClick={()=>showAssociate(detail)}>Associar existente</Button></div></div>
-            {assignedAdmins.length===0?<p className={styles.hint}>Nenhum UNIT_ADMIN associado a esta unidade.</p>:<ul className={styles.adminList}>{assignedAdmins.map(admin=><li key={admin.userId}><div><strong>{admin.fullName}</strong><span>{admin.email}</span></div><span className={styles.adminStatus}>{admin.status==='ACTIVE'?'Ativo':admin.status==='INVITED'?'Convite pendente':'Inativo'}</span></li>)}</ul>}
+            {assignedAdmins.length===0?<p className={styles.hint}>Nenhum UNIT_ADMIN associado a esta unidade.</p>:<ul className={styles.adminList}>{assignedAdmins.map(admin=><li key={admin.userId}><PersonIdentity name={admin.fullName}><strong>{admin.fullName}</strong><span>{admin.email}</span></PersonIdentity><span className={styles.adminStatus}>{admin.status==='ACTIVE'?'Ativo':admin.status==='INVITED'?'Convite pendente':'Inativo'}</span></li>)}</ul>}
           </Card>
         </>}
     </>}
@@ -273,7 +274,7 @@ export function UnitsPage() {
         {availableError && <p role="alert" className={styles.error}>{availableError}</p>}
         {!available && !availableError && <p role="status">Carregando administradores...</p>}
         {available?.length===0 && <p>Nenhum administrador disponível para esta unidade. Você pode convidar um novo.</p>}
-        {available && available.length>0 && <fieldset className={styles.choices}><legend>Selecione um administrador</legend>{available.map(admin=><label key={admin.userId} className={styles.checkbox}><input type="radio" name="admin" value={admin.userId} checked={selectedAdmin===admin.userId} onChange={()=>setSelectedAdmin(admin.userId)} disabled={busy} /><span>{admin.fullName} · {admin.email} ({admin.status==='INVITED'?'convite pendente':'ativo'})</span></label>)}</fieldset>}
+        {available && available.length>0 && <fieldset className={styles.choices}><legend>Selecione um administrador</legend>{available.map(admin=><label key={admin.userId} className={styles.checkbox}><input type="radio" name="admin" value={admin.userId} checked={selectedAdmin===admin.userId} onChange={()=>setSelectedAdmin(admin.userId)} disabled={busy} /><PersonIdentity name={admin.fullName}><span>{admin.fullName} · {admin.email} ({admin.status==='INVITED'?'convite pendente':'ativo'})</span></PersonIdentity></label>)}</fieldset>}
         {associateError && <p role="alert" className={styles.error}>{associateError}</p>}
         <div className={styles.actions}><Button variant="secondary" onClick={returnToContext} disabled={busy}>{detailId?'Voltar à unidade':'Voltar às unidades'}</Button><Button variant="secondary" onClick={()=>showInvite(targetUnit)} disabled={busy}>Convidar novo</Button><Button type="submit" disabled={busy||associateUncertain||!selectedAdmin}>{pending==='associate'?'Associando...':'Associar administrador'}</Button></div>
       </form></Card>

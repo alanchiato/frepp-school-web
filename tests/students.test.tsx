@@ -5,6 +5,7 @@ import { StudentsPage } from '../src/admin/students/StudentsPage'
 import { UnitScopeProvider } from '../src/admin/unitadmins/UnitScopeContext'
 import { SessionContext, type SessionContextValue } from '../src/session/context'
 import type { BffClient } from '../src/shared/api/client'
+import { ApiError } from '../src/shared/api/errors'
 
 const unit={id:'11111111-1111-4111-8111-111111111111',name:'Centro'}
 const classroom={id:'22222222-2222-4222-8222-222222222222',schoolUnitId:unit.id,academicYearId:'33333333-3333-4333-8333-333333333333',gradeLevelId:'44444444-4444-4444-8444-444444444444',name:'Turma A',createdAt:'2026-10-25T12:00:00Z',updatedAt:'2026-10-25T12:00:00Z'}
@@ -18,10 +19,18 @@ function apiMocks(unitAdmin=false):Partial<BffClient>{
   return {...common,assignedUnits:vi.fn().mockResolvedValue({units:[unit]}),unitStudents:vi.fn().mockResolvedValue({students:[]}),unitEnrollments:vi.fn().mockResolvedValue({enrollments:[]}),unitGuardians:vi.fn().mockResolvedValue({guardians:[]}),unitStudentGuardians:vi.fn().mockResolvedValue({studentGuardians:[]}),unitClassrooms:vi.fn().mockResolvedValue({classes:[classroom]}),unitGradeLevels:vi.fn().mockResolvedValue({gradeLevels:[grade]}),unitAcademicYears:vi.fn().mockResolvedValue({academicYears:[year]})}
 }
 function renderPage(api:Partial<BffClient>,unitAdmin=false,path='/admin/students'){
-  const state={status:'authenticated',session:{user:{id:'77777777-7777-4777-8777-777777777777',email:'admin@school.test'},school:{id:'88888888-8888-4888-8888-888888888888',name:'Escola',timezone:'America/Sao_Paulo'},permissions:['students.read','students.create'],experiences:{admin:!unitAdmin,teacher:false,unitAdmin}}}
+  const state={status:'authenticated',session:{user:{id:'77777777-7777-4777-8777-777777777777',email:'admin@school.test'},school:{id:'88888888-8888-4888-8888-888888888888',name:'Escola',timezone:'America/Sao_Paulo'},permissions:unitAdmin?['students.read','students.create']:['students.read','students.create','guardian_onboarding.create'],experiences:{admin:!unitAdmin,teacher:false,unitAdmin}}}
   return render(<MemoryRouter initialEntries={[path]}><SessionContext.Provider value={{api,invalidate:vi.fn(),state} as unknown as SessionContextValue}><UnitScopeProvider enabled={unitAdmin}><Routes><Route path="/admin/students" element={<StudentsPage/>}/><Route path="/admin/students/:studentId" element={<StudentsPage/>}/></Routes></UnitScopeProvider></SessionContext.Provider></MemoryRouter>)
 }
 describe('Cadastro de alunos',()=>{
+  it('mantém miniatura na lista e avatar maior no perfil do aluno',async()=>{
+    const view=renderPage({...apiMocks(),students:vi.fn().mockResolvedValue({students:[student]})})
+    const link=await screen.findByRole('link',{name:'Maria Silva'})
+    expect(view.container.querySelectorAll('[data-person-avatar="small"]')).toHaveLength(1)
+    fireEvent.click(link)
+    expect(await screen.findByRole('heading',{name:'Maria Silva'})).toBeInTheDocument()
+    expect(view.container.querySelectorAll('[data-person-avatar="large"]')).toHaveLength(1)
+  })
   it('SCHOOL_ADMIN cria aluno e matrícula e pode deixar responsáveis para depois',async()=>{
     const createStudent=vi.fn().mockResolvedValue({student}),createEnrollment=vi.fn().mockResolvedValue({enrollment})
     renderPage({...apiMocks(),createStudent,createEnrollment})
@@ -54,8 +63,16 @@ describe('Cadastro de alunos',()=>{
     const createStudentGuardian=vi.fn().mockResolvedValue({studentGuardian:{}})
     renderPage({...apiMocks(),students:vi.fn().mockResolvedValue({students:[student]}),enrollments:vi.fn().mockResolvedValue({enrollments:[enrollment]}),guardians:vi.fn().mockResolvedValue({guardians:[guardian]}),createStudentGuardian},false,`/admin/students/${student.id}`)
     fireEvent.click(await screen.findByRole('button',{name:'Adicionar responsável'}))
+    expect(screen.getByRole('list',{name:'Etapas do vínculo do responsável'})).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    expect(screen.getByRole('alert')).toHaveTextContent('Selecione o responsável.')
     fireEvent.change(screen.getByLabelText('Responsável'),{target:{value:guardian.id}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    expect(screen.getByRole('heading',{name:'Contatos'})).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
     fireEvent.change(screen.getByLabelText('Parentesco / relação'),{target:{value:'MOTHER'}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    expect(screen.getByRole('heading',{name:'Vínculo com Maria Silva'}).parentElement).toHaveTextContent('Relação: MOTHER')
     fireEvent.click(screen.getByRole('button',{name:'Salvar responsável'}))
     await waitFor(()=>expect(createStudentGuardian).toHaveBeenCalledWith(expect.objectContaining({studentId:student.id,guardianId:guardian.id,relationship:'MOTHER'}),expect.any(AbortSignal)))
   })
@@ -65,10 +82,60 @@ describe('Cadastro de alunos',()=>{
     fireEvent.click(await screen.findByRole('button',{name:'Adicionar responsável'}))
     fireEvent.change(screen.getByLabelText('Cadastro'),{target:{value:'new'}})
     fireEvent.change(screen.getByLabelText('Nome completo'),{target:{value:'Ana Silva'}})
+    fireEvent.change(screen.getByLabelText('Nome social (opcional)'),{target:{value:'Aninha'}})
+    fireEvent.change(screen.getByLabelText('Documento (opcional)'),{target:{value:'12345678900'}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    fireEvent.change(screen.getByLabelText('Email (opcional)'),{target:{value:'email-invalido'}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    expect(screen.getByRole('alert')).toHaveTextContent('Informe um email válido')
+    fireEvent.change(screen.getByLabelText('Email (opcional)'),{target:{value:'ana@escola.test'}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
     fireEvent.change(screen.getByLabelText('Parentesco / relação'),{target:{value:'MOTHER'}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    expect(screen.getByLabelText('Enviar convite de acesso ao Frepp')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button',{name:'Salvar responsável'}))
-    await waitFor(()=>expect(createUnitGuardian).toHaveBeenCalledWith(unit.id,{guardian:expect.objectContaining({fullName:'Ana Silva'}),link:expect.objectContaining({studentId:student.id,relationship:'MOTHER'})},expect.any(AbortSignal)))
+    await waitFor(()=>expect(createUnitGuardian).toHaveBeenCalledWith(unit.id,{guardian:expect.objectContaining({fullName:'Ana Silva',preferredName:'Aninha',documentNumber:'12345678900',email:'ana@escola.test'}),link:expect.objectContaining({studentId:student.id,relationship:'MOTHER'})},expect.any(AbortSignal)))
     expect(createGuardian).not.toHaveBeenCalled();expect(createStudentGuardian).not.toHaveBeenCalled()
+  })
+  it('UNIT_ADMIN envia convite pela rota da unidade atribuída',async()=>{
+    const guardian={id:'99999999-9999-4999-8999-999999999999',fullName:'Ana Silva',preferredName:null,documentNumber:null,email:null,phone:null,status:'ACTIVE',createdAt:classroom.createdAt,updatedAt:classroom.updatedAt}
+    const createUnitGuardian=vi.fn().mockResolvedValue({guardian,studentGuardian:{}}),onboardUnitGuardian=vi.fn().mockResolvedValue({onboarding:{profileType:'GUARDIAN',profileId:guardian.id,userId:'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',email:'ana.login@escola.test',userStatus:'INVITED',role:'GUARDIAN',activation:'invitation_sent'}}),onboardGuardian=vi.fn()
+    renderPage({...apiMocks(true),unitStudents:vi.fn().mockResolvedValue({students:[student]}),createUnitGuardian,onboardUnitGuardian,onboardGuardian},true,`/admin/students/${student.id}`)
+    fireEvent.click(await screen.findByRole('button',{name:'Adicionar responsável'}))
+    fireEvent.change(screen.getByLabelText('Cadastro'),{target:{value:'new'}})
+    fireEvent.change(screen.getByLabelText('Nome completo'),{target:{value:'Ana Silva'}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    fireEvent.change(screen.getByLabelText('Parentesco / relação'),{target:{value:'Mãe'}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    fireEvent.click(screen.getByLabelText('Enviar convite de acesso ao Frepp'))
+    fireEvent.change(screen.getByLabelText('Email para o convite'),{target:{value:'ana.login@escola.test'}})
+    fireEvent.click(screen.getByRole('button',{name:'Salvar responsável'}))
+    await waitFor(()=>expect(onboardUnitGuardian).toHaveBeenCalledWith(unit.id,{guardianId:guardian.id,email:'ana.login@escola.test'},expect.any(AbortSignal)))
+    expect(createUnitGuardian).toHaveBeenCalledTimes(1);expect(onboardGuardian).not.toHaveBeenCalled()
+  })
+  it('SCHOOL_ADMIN convida novo responsável após o vínculo e corrige email sem duplicar cadastro',async()=>{
+    const guardian={id:'99999999-9999-4999-8999-999999999999',fullName:'Ana Silva',preferredName:null,documentNumber:null,email:'ana.contato@escola.test',phone:null,status:'ACTIVE',createdAt:classroom.createdAt,updatedAt:classroom.updatedAt}
+    const createGuardian=vi.fn().mockResolvedValue({guardian}),createStudentGuardian=vi.fn().mockResolvedValue({studentGuardian:{}})
+    const onboardGuardian=vi.fn().mockRejectedValueOnce(new ApiError(409,'conflict')).mockResolvedValueOnce({onboarding:{profileType:'GUARDIAN',profileId:guardian.id,userId:'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',email:'ana.login@escola.test',userStatus:'INVITED',role:'GUARDIAN',activation:'invitation_sent'}})
+    renderPage({...apiMocks(),students:vi.fn().mockResolvedValue({students:[student]}),createGuardian,createStudentGuardian,onboardGuardian},false,`/admin/students/${student.id}`)
+    fireEvent.click(await screen.findByRole('button',{name:'Adicionar responsável'}))
+    fireEvent.change(screen.getByLabelText('Nome completo'),{target:{value:'Ana Silva'}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    fireEvent.change(screen.getByLabelText('Email (opcional)'),{target:{value:'ana.contato@escola.test'}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    fireEvent.change(screen.getByLabelText('Parentesco / relação'),{target:{value:'MOTHER'}})
+    fireEvent.click(screen.getByRole('button',{name:'Próximo'}))
+    fireEvent.click(screen.getByLabelText('Enviar convite de acesso ao Frepp'))
+    fireEvent.change(screen.getByLabelText('Email para o convite'),{target:{value:'outro.login@escola.test'}})
+    fireEvent.click(screen.getByRole('button',{name:'Salvar responsável'}))
+    await waitFor(()=>expect(screen.getByRole('alert')).toHaveTextContent('Responsável vinculado, mas não foi possível enviar o convite'))
+    expect(createGuardian).toHaveBeenCalledTimes(1);expect(createStudentGuardian).toHaveBeenCalledTimes(1)
+    fireEvent.change(screen.getByLabelText('Email para o convite'),{target:{value:'ana.login@escola.test'}})
+    fireEvent.click(screen.getByRole('button',{name:'Salvar responsável'}))
+    await waitFor(()=>expect(screen.getByRole('status')).toHaveTextContent('Convite enviado para ana.login@escola.test'))
+    expect(createGuardian).toHaveBeenCalledTimes(1);expect(createStudentGuardian).toHaveBeenCalledTimes(1)
+    expect(onboardGuardian).toHaveBeenNthCalledWith(2,{guardianId:guardian.id,email:'ana.login@escola.test'},expect.any(AbortSignal))
   })
   it('SCHOOL_ADMIN edita os dados do aluno pelo perfil',async()=>{
     const updated={...student,fullName:'Maria Oliveira',preferredName:'Mari',status:'INACTIVE'}

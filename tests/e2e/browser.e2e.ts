@@ -141,6 +141,123 @@ test('mobile school menu and overview cards behave as a carousel', async ({ page
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
 })
 
+test('student birth date stays inside its field on iPad and phone', async ({ page }) => {
+  const studentId='88888888-8888-4888-8888-888888888888'
+  const stamp='2026-10-25T12:00:00Z'
+  const student={id:studentId,fullName:'Mariana Costa',preferredName:null,birthDate:'2012-03-14',documentNumber:'12345678900',status:'ACTIVE',createdAt:stamp,updatedAt:stamp}
+  const responses:Record<string,unknown>={
+    '/session':session,'/admin/students':{students:[student]},'/admin/enrollments':{enrollments:[]},
+    '/admin/guardians':{guardians:[]},'/admin/student-guardians':{studentGuardians:[]},
+    '/admin/classes':{classes:[]},'/admin/grade-levels':{gradeLevels:[]},
+    '/admin/academic-years':{academicYears:[]},'/admin/units':{units:[]},
+  }
+  await page.route('**/bff/**',route=>{
+    const path=new URL(route.request().url()).pathname.replace('/bff','')
+    return route.fulfill({status:path in responses?200:404,contentType:'application/json',body:JSON.stringify(responses[path]??{error:{code:'not_found'}})})
+  })
+  for(const {width,height} of [{width:1024,height:768},{width:768,height:1024},{width:390,height:844},{width:320,height:800}]){
+    await page.setViewportSize({width,height})
+    await page.goto(`/admin/students/${studentId}`)
+    await expect(page.locator('[data-person-avatar="large"]')).toHaveCount(1)
+    if(width===390)await page.screenshot({path:'docs/implementation/evidence/SPEC-016-student-profile-390x844.png',fullPage:true})
+    await page.getByRole('button',{name:'Editar aluno'}).click()
+    const dateInput=page.getByLabel('Data de nascimento (opcional)')
+    const documentInput=page.getByLabel('Documento (opcional)')
+    const date=await dateInput.boundingBox()
+    const field=await dateInput.locator('..').boundingBox()
+    const documentBox=await documentInput.boundingBox()
+    expect(date&&field&&documentBox).toBeTruthy()
+    if(date&&field&&documentBox){
+      expect(date.x).toBeGreaterThanOrEqual(field.x-1)
+      expect(date.x+date.width).toBeLessThanOrEqual(field.x+field.width+1)
+      if(width>700)expect(field.x+field.width).toBeLessThanOrEqual(documentBox.x+1)
+      else expect(field.y+field.height).toBeLessThanOrEqual(documentBox.y+1)
+    }
+    if(process.env.CAPTURE_STUDENT_DATE==='1')await page.screenshot({path:`test-results/student-date-${width}.png`,fullPage:true})
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
+  }
+})
+
+test('student guardian wizard fits iPad and phone layouts', async ({ page }) => {
+  const studentId='88888888-8888-4888-8888-888888888888'
+  const stamp='2026-10-25T12:00:00Z'
+  const student={id:studentId,fullName:'Mariana Costa',preferredName:null,birthDate:null,documentNumber:null,status:'ACTIVE',createdAt:stamp,updatedAt:stamp}
+  const guardian={id:'99999999-9999-4999-8999-999999999999',fullName:'Ana Costa',preferredName:null,documentNumber:null,email:null,phone:null,status:'ACTIVE',createdAt:stamp,updatedAt:stamp}
+  const sessionWithInvite={...session,permissions:[...session.permissions,'guardian_onboarding.create']}
+  const responses:Record<string,unknown>={
+    '/session':sessionWithInvite,'/admin/students':{students:[student]},'/admin/enrollments':{enrollments:[]},
+    '/admin/guardians':{guardians:[guardian]},'/admin/student-guardians':{studentGuardians:[]},
+    '/admin/classes':{classes:[]},'/admin/grade-levels':{gradeLevels:[]},
+    '/admin/academic-years':{academicYears:[]},'/admin/units':{units:[]},
+  }
+  await page.route('**/bff/**',route=>{
+    const path=new URL(route.request().url()).pathname.replace('/bff','')
+    return route.fulfill({status:path in responses?200:404,contentType:'application/json',body:JSON.stringify(responses[path]??{error:{code:'not_found'}})})
+  })
+  for(const {width,height} of [{width:768,height:1024},{width:390,height:844},{width:320,height:800}]){
+    await page.setViewportSize({width,height})
+    await page.goto(`/admin/students/${studentId}`)
+    await page.getByRole('button',{name:'Adicionar responsável'}).click()
+    const progress=page.getByRole('list',{name:'Etapas do vínculo do responsável'})
+    await expect(progress.locator('[aria-current="step"]')).toContainText('Responsável')
+    await page.getByRole('combobox',{name:'Responsável',exact:true}).selectOption(guardian.id)
+    await expect(page.getByText('Nome completo',{exact:true})).toBeVisible()
+    await page.getByRole('button',{name:'Próximo'}).click()
+    await expect(progress.locator('[aria-current="step"]')).toContainText('Contatos')
+    await page.getByRole('button',{name:'Próximo'}).click()
+    await page.getByLabel('Parentesco / relação').fill('Mãe')
+    await page.getByLabel('Responsável legal').check()
+    await page.getByRole('button',{name:'Próximo'}).click()
+    await expect(page.getByRole('button',{name:'Salvar responsável'})).toBeVisible()
+    await expect(progress.locator('[aria-current="step"]')).toContainText('Revisão')
+    await page.getByLabel('Enviar convite de acesso ao Frepp').check()
+    await page.getByLabel('Email para o convite').fill('ana.login@escola.test')
+    if(process.env.CAPTURE_GUARDIAN_WIZARD==='1'){
+      await page.waitForTimeout(250)
+      await page.getByRole('heading',{name:'Gerenciar responsáveis'}).locator('xpath=../../..').screenshot({path:`test-results/guardian-wizard-${width}.png`})
+    }
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
+  }
+})
+
+test('teacher assignment dates stay side by side without overlap on iPad mini or phone', async ({ page }) => {
+  const teacherId='22222222-2222-4222-8222-222222222222'
+  const stamp='2026-10-25T12:00:00Z'
+  const teacher={id:teacherId,name:'Mariana Costa',email:'mariana@escola.test',createdAt:stamp,updatedAt:stamp}
+  const assignment={id:'99999999-9999-4999-8999-999999999999',teacherId,classId:'55555555-5555-4555-8555-555555555555',subjectId:null,role:'REGENT_TEACHER',startDate:'2026-02-03',endDate:null,status:'ACTIVE',createdAt:stamp,updatedAt:stamp}
+  const responses:Record<string,unknown>={
+    '/session':session,'/admin/teachers':{teachers:[teacher]},'/admin/teacher-assignments':{teacherAssignments:[assignment]},
+    '/admin/classes':{classes:[]},'/admin/subjects':{subjects:[]},'/admin/units':{units:[]},
+    '/admin/grade-levels':{gradeLevels:[]},'/admin/academic-years':{academicYears:[]},'/admin/teacher-users':{teacherUsers:[]},
+  }
+  await page.route('**/bff/**',route=>{
+    const path=new URL(route.request().url()).pathname.replace('/bff','')
+    return route.fulfill({status:path in responses?200:404,contentType:'application/json',body:JSON.stringify(responses[path]??{error:{code:'not_found'}})})
+  })
+  for(const {width,height} of [{width:1024,height:768},{width:768,height:1024},{width:390,height:844},{width:320,height:800}]){
+    await page.setViewportSize({width,height})
+    await page.goto(`/admin/teachers/${teacherId}`)
+    await expect(page.locator('[data-person-avatar="large"]')).toHaveCount(1)
+    if(width===390)await page.screenshot({path:'docs/implementation/evidence/SPEC-016-teacher-profile-390x844.png',fullPage:true})
+    await page.getByRole('button',{name:'Editar vigência'}).click()
+    const start=await page.getByLabel('Data de início').boundingBox()
+    const end=await page.getByLabel('Data final (opcional)').boundingBox()
+    const startField=await page.getByLabel('Data de início').locator('..').boundingBox()
+    const endField=await page.getByLabel('Data final (opcional)').locator('..').boundingBox()
+    expect(start&&end).toBeTruthy()
+    if(start&&end&&startField&&endField){
+      expect(startField.x+startField.width).toBeLessThanOrEqual(endField.x+1)
+      expect(start.x).toBeGreaterThanOrEqual(startField.x-1)
+      expect(start.x+start.width).toBeLessThanOrEqual(startField.x+startField.width+1)
+      expect(end.x).toBeGreaterThanOrEqual(endField.x-1)
+      expect(end.x+end.width).toBeLessThanOrEqual(endField.x+endField.width+1)
+      expect(Math.abs(start.y-end.y)).toBeLessThanOrEqual(1)
+    }
+    if(process.env.CAPTURE_TEACHER_DATES==='1') await page.screenshot({path:`test-results/teacher-dates-${width}.png`,fullPage:true})
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
+  }
+})
+
 test('class workspace navigation, sections and five responsive viewports', async ({ page }) => {
   const classId='44444444-4444-4444-8444-444444444444',unitId='55555555-5555-4555-8555-555555555555',yearId='66666666-6666-4666-8666-666666666666',gradeId='77777777-7777-4777-8777-777777777777'
   const studentId='88888888-8888-4888-8888-888888888888',teacherId='99999999-9999-4999-8999-999999999999',subjectId='aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'
@@ -163,7 +280,10 @@ test('class workspace navigation, sections and five responsive viewports', async
   expect(calls.filter(path=>path.includes('/workspace'))).toHaveLength(1)
   for(const [width,height] of [[1440,900],[1280,800],[768,1024],[390,844],[360,800]] as const){
     await page.setViewportSize({width,height})
+    await page.waitForTimeout(360)
     await expect(page.getByRole('heading',{name:'Turma A'})).toBeVisible()
+    await expect(page.locator('[data-person-avatar="small"]')).toHaveCount(1)
+    if(width===390)await page.screenshot({path:'docs/implementation/evidence/SPEC-016-class-students-390x844.png',fullPage:true})
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
     if(process.env.CAPTURE_CLASS_WORKSPACE==='1')await page.screenshot({path:`docs/implementation/evidence/CLASS-WORKSPACE-${width}.png`,fullPage:true})
   }
@@ -178,6 +298,10 @@ test('class workspace navigation, sections and five responsive viewports', async
       expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
       await expect(table.getByText('Matemática')).toBeVisible()
       await expect(table.getByText('Ciências')).toBeVisible()
+      await expect(table.locator('[data-person-avatar="small"]')).toHaveCount(1)
+      await page.setViewportSize({width:390,height:844})
+      await page.waitForTimeout(360)
+      await page.screenshot({path:'docs/implementation/evidence/SPEC-016-class-teachers-390x844.png',fullPage:true})
       if(process.env.CAPTURE_CLASS_WORKSPACE==='1'){
         await page.setViewportSize({width:1440,height:900})
         await page.screenshot({path:'docs/implementation/evidence/CLASS-WORKSPACE-Professores-desktop.png',fullPage:true})
@@ -191,4 +315,51 @@ test('class workspace navigation, sections and five responsive viewports', async
   if(process.env.CAPTURE_CLASS_WORKSPACE==='1')await page.screenshot({path:'docs/implementation/evidence/CLASS-WORKSPACE-empty.png',fullPage:true})
   await page.reload();await expect(page.getByRole('heading',{name:'Turma A'})).toBeVisible()
   await page.getByRole('link',{name:'Voltar às turmas'}).click();await expect(page.getByRole('link',{name:'Turma A'})).toBeVisible()
+})
+
+test('guardian directory and profile preserve navigation and responsive layout',async({page})=>{
+  await boundary(page,{restored:true})
+  await page.route('**/bff/session',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({...session,permissions:[...session.permissions,'guardians.create','guardian_onboarding.create']})}))
+  await page.route('**/bff/admin/students',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({students:[]})}))
+  const guardianId='22222222-2222-4222-8222-222222222222',studentId='33333333-3333-4333-8333-333333333333',stamp='2026-10-26T12:00:00Z'
+  const guardian={id:guardianId,fullName:'Responsável Exemplo',preferredName:null,documentNumber:null,email:'contato@exemplo.test',phone:null,status:'ACTIVE',createdAt:stamp,updatedAt:stamp}
+  const detail={guardian,students:[{id:'44444444-4444-4444-8444-444444444444',studentId,studentName:'Aluno Exemplo',relationship:'Mãe',isLegalGuardian:true,isPrimaryContact:true,isFinancialResponsible:false,status:'ACTIVE',unitId:'11111111-1111-4111-8111-111111111111',unitName:'Centro',className:'A',updatedAt:stamp}],access:{identityStatus:'NOT_CONFIGURED',invitationStatus:'NONE',loginEmail:null}}
+  await page.route('**/bff/admin/guardian-families**',async route=>{const path=new URL(route.request().url()).pathname;await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(path.endsWith(guardianId)?{guardianFamily:detail}:{guardianFamilies:{items:[{guardian,linkedStudents:1}],page:1,pageSize:20,total:1,withLinks:1,withoutLinks:0}})})})
+  await page.goto('/admin/guardians');await expect(page.getByRole('heading',{name:'Responsáveis',exact:true})).toBeVisible()
+  await expect(page.locator('[data-person-avatar="small"]')).toHaveCount(1)
+  for(const [width,height] of [[1440,900],[1280,800],[768,1024],[390,844],[360,800]] as const){
+    await page.setViewportSize({width,height})
+    await page.waitForTimeout(360)
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`list overflow at ${width}`).toBe(true)
+    const searchButton=await page.getByRole('button',{name:'Buscar',exact:true}).boundingBox()
+    expect(searchButton?.height).toBeLessThanOrEqual(56)
+    expect(searchButton?.width).toBeLessThan(130)
+    await page.screenshot({path:`docs/implementation/evidence/SPEC-015-guardians-list-${width}x${height}.png`,fullPage:true})
+  }
+  await page.getByRole('button',{name:'Novo responsável'}).click()
+  await expect(page.getByRole('list',{name:'Etapas do cadastro do responsável'})).toBeVisible()
+  await page.getByLabel('Nome completo').fill('Responsável Exemplo')
+  await page.getByLabel('Nome social (opcional)').fill('Nome Exemplo')
+  await page.getByRole('button',{name:'Próximo'}).click()
+  await page.getByRole('button',{name:'Próximo'}).click()
+  await page.getByRole('button',{name:'Próximo'}).click()
+  await expect(page.getByText('Vincular depois')).toBeVisible()
+  for(const [width,height] of [[1440,900],[1280,800],[768,1024],[390,844],[360,800]] as const){
+    await page.setViewportSize({width,height})
+    await page.waitForTimeout(360)
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`wizard overflow at ${width}`).toBe(true)
+    await page.screenshot({path:`docs/implementation/evidence/SPEC-015-guardians-wizard-${width}x${height}.png`,fullPage:true})
+  }
+  await page.goto('/admin/guardians')
+  await page.getByRole('link',{name:/Responsável Exemplo/}).click()
+  await expect(page.locator('[data-person-avatar="large"]')).toHaveCount(1)
+  await expect(page.locator('[data-person-avatar="small"]')).toHaveCount(1)
+  await expect(page.getByRole('link',{name:/Aluno Exemplo/})).toHaveAttribute('href',`/admin/students/${studentId}?guardian=${guardianId}`)
+  await page.getByRole('tab',{name:'Acesso ao aplicativo'}).click();await expect(page.getByText('Sem acesso configurado')).toBeVisible()
+  for(const [width,height] of [[1440,900],[1280,800],[768,1024],[390,844],[360,800]] as const){
+    await page.setViewportSize({width,height})
+    await page.waitForTimeout(360)
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`profile overflow at ${width}`).toBe(true)
+    await page.screenshot({path:`docs/implementation/evidence/SPEC-015-guardians-profile-${width}x${height}.png`,fullPage:true})
+  }
 })

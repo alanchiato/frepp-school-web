@@ -10,6 +10,7 @@ import { ClassWorkspacePage } from '../admin/academicstructure/ClassWorkspacePag
 import { SubjectsPage } from '../admin/subjects/SubjectsPage'
 import { TeachersPage } from '../admin/teachers/TeachersPage'
 import { StudentsPage } from '../admin/students/StudentsPage'
+import { GuardiansPage } from '../admin/guardians/GuardiansPage'
 import { Login } from '../auth/Login'
 import { SchoolSelection } from '../auth/SchoolSelection'
 import { useSession } from '../session/context'
@@ -21,8 +22,8 @@ export function App() {
   const { state, restore } = useSession()
   const location = useLocation()
   useLayoutEffect(() => {
-    const titles: Record<string, string> = { '/': 'Visão geral', '/login': 'Entrar', '/select-school': 'Escolha sua escola', '/admin/units': 'Unidades', '/admin/academic-years': 'Anos letivos', '/admin/academic-structure': 'Séries e turmas', '/admin/subjects': 'Disciplinas', '/admin/teachers': 'Professores', '/admin/students': 'Alunos' }
-    document.title = `${titles[location.pathname] ?? (location.pathname.startsWith('/admin/classes/') ? 'Espaço da turma' : location.pathname.startsWith('/admin/units/') ? 'Detalhes da unidade' : location.pathname.startsWith('/admin/teachers/') ? 'Perfil do professor' : location.pathname.startsWith('/admin/students/') ? 'Perfil do aluno' : 'Página não encontrada')} · Frepp School`
+    const titles: Record<string, string> = { '/': 'Visão geral', '/login': 'Entrar', '/select-school': 'Escolha sua escola', '/admin/units': 'Unidades', '/admin/academic-years': 'Anos letivos', '/admin/academic-structure': 'Séries e turmas', '/admin/subjects': 'Disciplinas', '/admin/teachers': 'Professores', '/admin/students': 'Alunos', '/admin/guardians':'Responsáveis' }
+    document.title = `${titles[location.pathname] ?? (location.pathname.startsWith('/admin/classes/') ? 'Espaço da turma' : location.pathname.startsWith('/admin/units/') ? 'Detalhes da unidade' : location.pathname.startsWith('/admin/teachers/') ? 'Perfil do professor' : location.pathname.startsWith('/admin/students/') ? 'Perfil do aluno' : location.pathname.startsWith('/admin/guardians/') ? 'Perfil do responsável' : 'Página não encontrada')} · Frepp School`
     document.querySelector<HTMLElement>('h1')?.setAttribute('tabindex', '-1')
     document.querySelector<HTMLElement>('h1')?.focus({ preventScroll: true })
   }, [location.pathname, state.status])
@@ -45,6 +46,8 @@ export function App() {
     <Route path="/admin/teachers/:teacherId" element={authenticated ? <AppShell>{state.session.experiences.admin || state.session.experiences.unitAdmin ? <TeachersPage /> : <Forbidden />}</AppShell> : <Navigate to={selecting ? '/select-school' : '/login'} replace />} />
     <Route path="/admin/students" element={authenticated ? <AppShell>{state.session.experiences.admin || state.session.experiences.unitAdmin ? <StudentsPage /> : <Forbidden />}</AppShell> : <Navigate to={selecting ? '/select-school' : '/login'} replace />} />
     <Route path="/admin/students/:studentId" element={authenticated ? <AppShell>{state.session.experiences.admin || state.session.experiences.unitAdmin ? <StudentsPage /> : <Forbidden />}</AppShell> : <Navigate to={selecting ? '/select-school' : '/login'} replace />} />
+    <Route path="/admin/guardians" element={authenticated ? <AppShell>{state.session.experiences.admin || state.session.experiences.unitAdmin ? <GuardiansPage /> : <Forbidden />}</AppShell> : <Navigate to={selecting ? '/select-school' : '/login'} replace />} />
+    <Route path="/admin/guardians/:guardianId" element={authenticated ? <AppShell>{state.session.experiences.admin || state.session.experiences.unitAdmin ? <GuardiansPage /> : <Forbidden />}</AppShell> : <Navigate to={selecting ? '/select-school' : '/login'} replace />} />
     <Route path="/admin/unit-admins" element={<Navigate to="/admin/units" replace />} />
     <Route path="*" element={<main id="main"><Logo /><ErrorState title="Página não encontrada" message="O endereço que você acessou não está disponível."><Link to={authenticated ? '/' : selecting ? '/select-school' : '/login'}>Voltar para {authenticated ? 'a visão geral' : selecting ? 'a seleção de escola' : 'o login'}</Link></ErrorState></main>} />
   </Routes></UnitScopeProvider>

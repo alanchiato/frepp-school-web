@@ -1,16 +1,40 @@
 .controlsGrid > label { min-width: 0; align-content: start; }
 .controlsGrid input:not([type='checkbox']), .controlsGrid select, .filterSearch input, .filterStatus select, .filterChoice select { box-sizing: border-box; width: 100%; height: 50px; min-width: 0; }
+.dateField { display: flex; align-items: center; box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; height: 50px; padding: 0 var(--space-4); overflow: hidden; border: 1px solid var(--input-border); border-radius: var(--radius-sm); background: var(--surface); }
+.dateField:focus-within { outline: var(--focus); outline-offset: 2px; }
+.controlsGrid .dateField input[type='date'] { flex: 1 1 auto; box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; height: 100%; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--navy); font-size: 1rem; outline: none; }
+.controlsGrid .dateField input[type='date']:focus-visible { outline: none; }
 .filterSearch { flex: 1 1 320px; width: 100%; max-width: 420px; }
 .filterStatus { flex: 0 1 220px; min-width: 180px; }
 .filterChoice { flex: 1 1 220px; min-width: 200px; }
 .guardians { display: grid; gap: var(--space-4); }
 .guardians > p { margin: 0; }
+.guardianWizard { margin-top: var(--space-5); }
+.guardianIdentityStep { display: grid; gap: var(--space-4); }
+.guardianReadOnly { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.guardianReadOnly > div { display: grid; gap: var(--space-2); min-width: 0; padding: var(--space-4); border-radius: var(--radius-sm); background: var(--surface-alt); overflow-wrap: anywhere; }
+.guardianReadOnly strong { color: var(--navy); }
+.guardianWizard .guardianLinkStep { display: grid; gap: var(--space-5); }
+.guardianWizard h4 { margin: 0 0 var(--space-3); color: var(--navy); }
+.guardianReview { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.guardianInvite { display: grid; gap: var(--space-3); padding: var(--space-4); border: var(--border); border-radius: var(--radius-sm); background: var(--surface-alt); }
+.guardianInvite .inviteChoice { display: flex; align-items: center; gap: var(--space-3); }
+.guardianInvite .inviteChoice input { width: 18px; height: 18px; accent-color: var(--blue); }
+.guardianInvite > label:not(.inviteChoice) { max-width: 420px; }
+.guardianInvite p { margin: 0; color: var(--text); font-size: .875rem; }
 .flags { display: flex; flex-wrap: wrap; gap: var(--space-4); }
 .flags label { display: inline-flex !important; align-items: center; gap: var(--space-2); font-weight: 500 !important; }
 .flags input { width: 18px; height: 18px; accent-color: var(--blue); }
 .status { display: inline-block; padding: .2rem .65rem; border-radius: 999px; font-size: .78rem; font-weight: 700; background: var(--surface-alt); }
 .status[data-status='ACTIVE'] { background: #ddf7e9; color: #136b43; }
-.details { display: flex; flex-wrap: wrap; gap: var(--space-6); }
+.summaryName { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1) var(--space-2); }
+.summaryName h2 { margin: 0; }
+.details { display: flex; flex-wrap: wrap; gap: var(--space-6); margin-inline-start: calc(64px + var(--space-3)); }
 .details div { display: grid; gap: var(--space-2); }
 .innerTable { border: var(--border); border-radius: var(--radius-sm); overflow: hidden; }
 @media (max-width: 700px) { .filterSearch, .filterStatus, .filterChoice { flex: 1 1 100%; max-width: none; min-width: 0; } .innerTable { padding: 0 var(--space-3); } }
+@media (max-width: 1023px) { .dateField { padding-inline: var(--space-2); } }
+@media (max-width: 1023px) { .guardianReview { grid-template-columns: repeat(2, minmax(0, 1fr)); } .guardianReview > div:last-child { grid-column: 1 / -1; } }
+@media (max-width: 700px) { .guardianReadOnly, .guardianReview { grid-template-columns: 1fr; } .guardianReview > div:last-child { grid-column: auto; } }
+@media (max-width: 700px) { .summaryHeading { display: grid; grid-template-columns: minmax(0, 1fr); } .summaryHeading > button { justify-self: end; } }
+@media (max-width: 420px) { .details { column-gap: var(--space-4); } }
